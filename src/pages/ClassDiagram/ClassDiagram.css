@@ -1,0 +1,212 @@
+/* Additional styles for Class Diagram chapter */
+
+.class-visual-demo {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-4);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-4);
+}
+
+.syntax-box {
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.syntax-code {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  color: var(--color-accent);
+  background: transparent;
+  padding: 0;
+}
+
+.method-examples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.method-example {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-bg-tertiary);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  gap: var(--space-4);
+}
+
+.method-example code {
+  font-size: 0.875rem;
+  background: transparent;
+}
+
+.method-example span {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.static-example {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-4);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-lg);
+}
+
+/* Visibility Grid */
+.visibility-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.visibility-card {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+
+.visibility-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+}
+
+.visibility-symbol {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--space-4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.visibility-card.public .visibility-symbol {
+  background: var(--color-success-muted);
+  color: var(--color-success);
+}
+
+.visibility-card.private .visibility-symbol {
+  background: var(--color-error-muted);
+  color: var(--color-error);
+}
+
+.visibility-card.protected .visibility-symbol {
+  background: var(--color-warning-muted);
+  color: var(--color-warning);
+}
+
+.visibility-card.package .visibility-symbol {
+  background: var(--color-info-muted);
+  color: var(--color-info);
+}
+
+.visibility-card h3 {
+  font-size: 1rem;
+  margin-bottom: var(--space-2);
+}
+
+.visibility-card p {
+  font-size: 0.8125rem;
+  margin-bottom: var(--space-3);
+}
+
+.visibility-example {
+  background: var(--color-bg-tertiary);
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+.visibility-example code {
+  font-size: 0.75rem;
+  background: transparent;
+}
+
+/* Object Comparison */
+.object-comparison {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  padding: var(--space-4);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-4);
+}
+
+.comparison-item {
+  text-align: center;
+}
+
+.comparison-item h4 {
+  font-size: 0.875rem;
+  margin-bottom: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+.comparison-arrow {
+  font-size: 2rem;
+  color: var(--color-accent);
+}
+
+.object-diagram-example {
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+/* Example Analysis */
+.example-analysis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.analysis-item h4 {
+  font-size: 0.875rem;
+  margin-bottom: var(--space-3);
+  color: var(--color-accent);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .visibility-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .object-comparison {
+    flex-direction: column;
+  }
+  
+  .comparison-arrow {
+    transform: rotate(90deg);
+  }
+  
+  .example-analysis {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .visibility-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,700 @@
+/* Chapter 2 - Software Development Process */
+
+.chapter-page {
+  padding: var(--space-8);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.chapter-header {
+  margin-bottom: var(--space-8);
+}
+
+.chapter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-accent-muted);
+  color: var(--color-accent);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.chapter-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.03em;
+}
+
+.chapter-description {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+}
+
+.chapter-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--space-8);
+}
+
+/* Section Navigation */
+.section-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  position: sticky;
+  top: var(--space-8);
+  height: fit-content;
+}
+
+.section-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-align: left;
+  font-size: 0.9375rem;
+}
+
+.section-nav-item:hover {
+  background: var(--color-bg-hover);
+  border-color: var(--color-border-hover);
+  color: var(--color-text-primary);
+}
+
+.section-nav-item.active {
+  background: var(--color-accent-muted);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.section-nav-item .arrow {
+  margin-left: auto;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all var(--transition-base);
+}
+
+.section-nav-item:hover .arrow,
+.section-nav-item.active .arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Content Section */
+.section-content {
+  min-height: 600px;
+}
+
+.content-section {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+}
+
+.content-section h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-6);
+}
+
+.content-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: var(--space-8) 0 var(--space-4);
+}
+
+/* Info Cards */
+.info-card {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-6);
+}
+
+.info-card.highlight {
+  border-color: var(--color-accent);
+  background: var(--color-accent-muted);
+}
+
+.info-card .card-icon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.info-card h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.info-card p {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* Concept Grid */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+
+.concept-card {
+  padding: var(--space-5);
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+
+.concept-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+}
+
+.concept-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-3);
+}
+
+.concept-card h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.concept-card p {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* Phases Diagram */
+.phases-diagram {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+}
+
+.phase-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  min-width: 180px;
+}
+
+.phase-number {
+  width: 32px;
+  height: 32px;
+  background: var(--color-accent);
+  color: white;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.phase-content h4 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.phase-content p {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.phase-arrow {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+/* MERISE Cycles */
+.merise-cycles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+
+.cycle-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.cycle-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  color: white;
+}
+
+.cycle-header.abstraction {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+.cycle-header.decision {
+  background: linear-gradient(135deg, #22c55e, #10b981);
+}
+
+.cycle-header.lifecycle {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+}
+
+.cycle-header h4 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.cycle-body {
+  padding: var(--space-4);
+  background: var(--color-bg-tertiary);
+}
+
+.cycle-body ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.cycle-body li {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.cycle-body li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+/* Models Table */
+.models-table {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-tertiary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row .level {
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* UP Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+
+.feature-card {
+  padding: var(--space-5);
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-3);
+}
+
+.feature-card h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.feature-card p {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+/* UP Phases */
+.up-phases {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+
+.up-phase {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.phase-label {
+  padding: var(--space-3);
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: white;
+}
+
+.up-phase.inception .phase-label {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+.up-phase.elaboration .phase-label {
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+}
+
+.up-phase.construction .phase-label {
+  background: linear-gradient(135deg, #22c55e, #10b981);
+}
+
+.up-phase.transition .phase-label {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+}
+
+.phase-desc {
+  padding: var(--space-4);
+  background: var(--color-bg-tertiary);
+}
+
+.phase-desc h4 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.phase-desc ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.phase-desc li {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+/* Disciplines */
+.disciplines-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.discipline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+/* 2TUP Diagram */
+.tup-diagram {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+  padding: var(--space-6);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-lg);
+}
+
+.tup-branch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.branch-header {
+  padding: var(--space-3);
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: var(--radius-lg);
+}
+
+.tup-branch.functional .branch-header {
+  background: var(--color-info-muted);
+  color: var(--color-info);
+}
+
+.tup-branch.technical .branch-header {
+  background: var(--color-warning-muted);
+  color: var(--color-warning);
+}
+
+.branch-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.branch-steps .step,
+.merge-steps .step {
+  padding: var(--space-3);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.tup-merge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.merge-point {
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-accent-muted);
+  color: var(--color-accent);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.9375rem;
+}
+
+.merge-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+/* Advantages Grid */
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+
+.advantage-card {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.advantage-icon {
+  color: var(--color-success);
+  flex-shrink: 0;
+}
+
+.advantage-card h4 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.advantage-card p {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+/* Comparison Table */
+.comparison-table {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-8);
+}
+
+.comp-header {
+  display: grid;
+  grid-template-columns: 120px repeat(3, 1fr);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-tertiary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.comp-row {
+  display: grid;
+  grid-template-columns: 120px repeat(3, 1fr);
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.comp-row:last-child {
+  border-bottom: none;
+}
+
+.comp-row .criteria {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.summary-card {
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.summary-card.merise {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), transparent);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.summary-card.up {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), transparent);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.summary-card.tup {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), transparent);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.summary-card h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.summary-card p {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tag {
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-bg-hover);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .chapter-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .section-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    position: static;
+  }
+
+  .section-nav-item {
+    white-space: nowrap;
+  }
+
+  .concept-grid,
+  .merise-cycles,
+  .features-grid,
+  .up-phases,
+  .advantages-grid,
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .tup-diagram {
+    grid-template-columns: 1fr;
+  }
+
+  .phases-diagram {
+    flex-direction: column;
+  }
+
+  .phase-arrow {
+    transform: rotate(90deg);
+  }
+}

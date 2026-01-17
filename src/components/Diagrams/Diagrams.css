@@ -1,0 +1,93 @@
+.uml-diagram {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+/* Use Case Diagram Styles */
+.system-label {
+  font-size: 14px;
+  font-weight: 600;
+  fill: var(--color-text-primary);
+}
+
+.actor-label {
+  font-size: 12px;
+  fill: var(--color-text-secondary);
+}
+
+.actor-label.small {
+  font-size: 10px;
+}
+
+.usecase-label {
+  font-size: 12px;
+  fill: var(--color-text-primary);
+}
+
+.relation-label {
+  font-size: 10px;
+  fill: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Class Diagram Styles */
+.class-name {
+  font-size: 13px;
+  font-weight: 600;
+  fill: var(--color-text-primary);
+}
+
+.class-name.italic {
+  font-style: italic;
+}
+
+.class-attr {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  fill: var(--color-text-secondary);
+}
+
+.class-method {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  fill: var(--color-text-muted);
+}
+
+.multiplicity {
+  font-size: 10px;
+  fill: var(--color-accent);
+  font-weight: 500;
+}
+
+/* Animations */
+.class-box,
+.actor {
+  transition: transform 0.2s ease;
+}
+
+.class-box:hover,
+.actor:hover {
+  filter: brightness(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .system-label {
+    font-size: 12px;
+  }
+  
+  .actor-label,
+  .usecase-label {
+    font-size: 10px;
+  }
+  
+  .class-name {
+    font-size: 11px;
+  }
+  
+  .class-attr,
+  .class-method {
+    font-size: 9px;
+  }
+}
