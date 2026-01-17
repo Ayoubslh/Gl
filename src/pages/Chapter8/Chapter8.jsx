@@ -5,6 +5,13 @@ import {
   ChevronRight, Lightbulb, GitBranch, RotateCcw, Timer,
   Zap, Target, CheckCircle2, XCircle, AlertCircle
 } from 'lucide-react';
+import {
+  OrderStateDiagram,
+  ConnectionStateDiagram,
+  LightStateDiagram,
+  PhoneStateDiagram,
+  StateNotationDiagram
+} from '../../components/Diagrams/StateDiagramSVG';
 import './Chapter8.css';
 
 const Chapter8 = () => {
@@ -356,119 +363,43 @@ const Chapter8 = () => {
             >
               <h2>Exemples de Diagrammes d'États</h2>
 
+              {/* State Diagram Notation */}
+              <div className="example-section">
+                <h3>Notation des Diagrammes d'États</h3>
+                <p>Voici les éléments fondamentaux utilisés dans les diagrammes d'états UML:</p>
+                <StateNotationDiagram />
+              </div>
+
               {/* Example 1: Order */}
               <div className="example-section">
                 <h3>Exemple 1: Cycle de vie d'une Commande</h3>
-                <div className="state-diagram">
-                  <div className="diagram-flow">
-                    <div className="initial-node"></div>
-                    <div className="diagram-arrow">
-                      <span>créer()</span>
-                    </div>
-                    <div className="state-node">
-                      <div className="state-title">Créée</div>
-                    </div>
-                    <div className="diagram-arrow">
-                      <span>valider()</span>
-                    </div>
-                    <div className="state-node">
-                      <div className="state-title">Validée</div>
-                    </div>
-                    <div className="diagram-arrow">
-                      <span>payer()</span>
-                    </div>
-                    <div className="state-node">
-                      <div className="state-title">Payée</div>
-                    </div>
-                    <div className="diagram-arrow">
-                      <span>expédier()</span>
-                    </div>
-                    <div className="state-node">
-                      <div className="state-title">Expédiée</div>
-                    </div>
-                    <div className="diagram-arrow">
-                      <span>livrer()</span>
-                    </div>
-                    <div className="state-node final-state">
-                      <div className="state-title">Livrée</div>
-                    </div>
-                  </div>
-                  <div className="cancel-path">
-                    <div className="cancel-arrow">
-                      <span>annuler()</span>
-                    </div>
-                    <div className="state-node error">
-                      <div className="state-title">Annulée</div>
-                    </div>
-                  </div>
-                </div>
+                <p>Ce diagramme montre les différents états par lesquels passe une commande, 
+                   de sa création jusqu'à sa livraison ou annulation.</p>
+                <OrderStateDiagram />
               </div>
 
-              {/* Example 2: Phone Call */}
+              {/* Example 2: Connection */}
               <div className="example-section">
-                <h3>Exemple 2: Appel Téléphonique</h3>
-                <div className="phone-diagram">
-                  <div className="phone-states">
-                    <div className="phone-state idle">
-                      <span>Inactif</span>
-                    </div>
-                    <div className="phone-arrows">
-                      <div className="arrow-label top">décrocher()</div>
-                      <div className="arrow-label bottom">raccrocher()</div>
-                    </div>
-                    <div className="phone-state active">
-                      <span>Tonalité</span>
-                    </div>
-                    <div className="phone-arrows">
-                      <div className="arrow-label top">composer(numéro)</div>
-                    </div>
-                    <div className="phone-state active">
-                      <span>Numérotation</span>
-                    </div>
-                    <div className="phone-arrows split">
-                      <div className="arrow-label top">[occupé]</div>
-                      <div className="arrow-label bottom">[disponible]</div>
-                    </div>
-                    <div className="phone-outcomes">
-                      <div className="phone-state error">Occupé</div>
-                      <div className="phone-state success">Connecté</div>
-                    </div>
-                  </div>
-                </div>
+                <h3>Exemple 2: États de Connexion</h3>
+                <p>Ce diagramme illustre les états d'une connexion réseau avec 
+                   les différentes transitions possibles.</p>
+                <ConnectionStateDiagram />
               </div>
 
-              {/* Example 3: Door */}
+              {/* Example 3: Traffic Light */}
               <div className="example-section">
-                <h3>Exemple 3: Porte Automatique</h3>
-                <div className="door-diagram">
-                  <div className="door-container">
-                    <div className="door-state closed">
-                      <span>Fermée</span>
-                      <div className="door-action">entry / verrouiller()</div>
-                    </div>
-                    <div className="door-transition opening">
-                      <span>ouvrir() [!bloquée]</span>
-                    </div>
-                    <div className="door-state opening-state">
-                      <span>Ouverture</span>
-                      <div className="door-action">do / actionnerMoteur()</div>
-                    </div>
-                    <div className="door-transition">
-                      <span>finOuverture</span>
-                    </div>
-                    <div className="door-state open">
-                      <span>Ouverte</span>
-                      <div className="door-action">entry / démarrerTimer()</div>
-                    </div>
-                    <div className="door-transition closing">
-                      <span>timeout / fermer()</span>
-                    </div>
-                    <div className="door-state closing-state">
-                      <span>Fermeture</span>
-                      <div className="door-action">do / actionnerMoteur()</div>
-                    </div>
-                  </div>
-                </div>
+                <h3>Exemple 3: Feu de Signalisation</h3>
+                <p>Un exemple classique de machine à états finis avec des transitions 
+                   temporelles automatiques.</p>
+                <LightStateDiagram />
+              </div>
+
+              {/* Example 4: Phone Call */}
+              <div className="example-section">
+                <h3>Exemple 4: Appel Téléphonique</h3>
+                <p>Ce diagramme montre les différents états d'un appel téléphonique 
+                   avec les conditions de garde.</p>
+                <PhoneStateDiagram />
               </div>
             </motion.div>
           )}

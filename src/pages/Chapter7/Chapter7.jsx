@@ -14,6 +14,12 @@ import {
   CheckCircle2,
   ChevronRight
 } from 'lucide-react';
+import {
+  ATMActivityDiagram,
+  LoginActivityDiagram,
+  OrderActivityDiagram,
+  ActivityNotationDiagram
+} from '../../components/Diagrams/ActivityDiagramSVG';
 import './Chapter7.css';
 
 const sections = [
@@ -545,129 +551,17 @@ function ExampleSection() {
     <div className="section">
       <h2>
         <Zap className="section-icon" />
-        Exemple : Processus de Commande
+        Exemples de Diagrammes d'Activité
       </h2>
 
       <p className="intro-text">
-        Voici un exemple complet de diagramme d'activité modélisant le processus 
-        de traitement d'une commande en ligne.
+        Voici des exemples complets de diagrammes d'activité modélisant différents processus.
       </p>
 
-      <div className="activity-diagram">
-        <div className="ad-header">
-          <span className="ad-title">act Traitement Commande</span>
-        </div>
-
-        <div className="ad-content">
-          <div className="ad-swimlanes">
-            <div className="ad-swimlane">
-              <div className="ad-lane-header">Client</div>
-              <div className="ad-lane-content">
-                <div className="ad-initial"></div>
-                <div className="ad-arrow">↓</div>
-                <div className="ad-action">Sélectionner produits</div>
-                <div className="ad-arrow">↓</div>
-                <div className="ad-action">Valider panier</div>
-              </div>
-            </div>
-
-            <div className="ad-swimlane">
-              <div className="ad-lane-header">Système</div>
-              <div className="ad-lane-content">
-                <div className="ad-spacer"></div>
-                <div className="ad-arrow from-left">←</div>
-                <div className="ad-action">Vérifier disponibilité</div>
-                <div className="ad-arrow">↓</div>
-                <div className="ad-decision">◇</div>
-                <div className="ad-branches">
-                  <div className="ad-branch">
-                    <span className="guard">[disponible]</span>
-                    <div className="ad-action">Calculer total</div>
-                  </div>
-                  <div className="ad-branch alt">
-                    <span className="guard">[indisponible]</span>
-                    <div className="ad-action">Notifier rupture</div>
-                    <div className="ad-flow-final">⊗</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="ad-swimlane">
-              <div className="ad-lane-header">Paiement</div>
-              <div className="ad-lane-content">
-                <div className="ad-spacer large"></div>
-                <div className="ad-arrow from-left">←</div>
-                <div className="ad-action">Traiter paiement</div>
-                <div className="ad-arrow">↓</div>
-                <div className="ad-decision">◇</div>
-                <div className="ad-branches">
-                  <div className="ad-branch">
-                    <span className="guard">[accepté]</span>
-                    <div className="ad-arrow to-right">→</div>
-                  </div>
-                  <div className="ad-branch alt">
-                    <span className="guard">[refusé]</span>
-                    <div className="ad-action small">Notifier échec</div>
-                    <div className="ad-flow-final">⊗</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="ad-swimlane">
-              <div className="ad-lane-header">Logistique</div>
-              <div className="ad-lane-content">
-                <div className="ad-spacer xlarge"></div>
-                <div className="ad-arrow from-left">←</div>
-                <div className="ad-fork"></div>
-                <div className="ad-parallel">
-                  <div className="ad-action small">Préparer colis</div>
-                  <div className="ad-action small">Générer facture</div>
-                </div>
-                <div className="ad-join"></div>
-                <div className="ad-arrow">↓</div>
-                <div className="ad-action">Expédier</div>
-                <div className="ad-arrow">↓</div>
-                <div className="ad-final">
-                  <div className="ad-final-inner"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h3>Éléments Utilisés</h3>
-
-      <div className="elements-summary">
-        <div className="element-item">
-          <div className="element-symbol initial"></div>
-          <span>Nœud initial - Début du processus</span>
-        </div>
-        <div className="element-item">
-          <div className="element-symbol action">Action</div>
-          <span>Actions - Tâches exécutées</span>
-        </div>
-        <div className="element-item">
-          <div className="element-symbol decision">◇</div>
-          <span>Décisions - Branchements conditionnels</span>
-        </div>
-        <div className="element-item">
-          <div className="element-symbol fork"></div>
-          <span>Fork/Join - Parallélisme</span>
-        </div>
-        <div className="element-item">
-          <div className="element-symbol flow-end">⊗</div>
-          <span>Fin de flux - Termine une branche</span>
-        </div>
-        <div className="element-item">
-          <div className="element-symbol final">
-            <div className="final-inner"></div>
-          </div>
-          <span>Nœud final - Fin de l'activité</span>
-        </div>
-      </div>
+      <ActivityNotationDiagram />
+      <ATMActivityDiagram />
+      <LoginActivityDiagram />
+      <OrderActivityDiagram />
 
       <h3>Conseils de Modélisation</h3>
 

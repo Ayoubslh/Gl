@@ -13,6 +13,12 @@ import {
   Unlock,
   Hash
 } from 'lucide-react';
+import { 
+  VehicleClassDiagram, 
+  LibraryClassDiagram, 
+  AssociationTypesDiagram,
+  MultiplicityDiagram 
+} from '../../components/Diagrams/ClassDiagramSVG';
 import './Chapter5.css';
 
 const sections = [
@@ -271,7 +277,8 @@ export default function Chapter5() {
               >
                 <h2>🔗 Relations entre Classes</h2>
 
-                <div className="relations-list">
+                <AssociationTypesDiagram />
+                <div className="relations-grid">
                   <div className="relation-item">
                     <div className="relation-visual">
                       <div className="mini-class">A</div>
@@ -369,28 +376,7 @@ export default function Chapter5() {
                 </div>
 
                 <h3>Multiplicités</h3>
-                <div className="multiplicities">
-                  <div className="mult-item">
-                    <span className="mult-value">1</span>
-                    <span>Exactement un</span>
-                  </div>
-                  <div className="mult-item">
-                    <span className="mult-value">0..1</span>
-                    <span>Zéro ou un</span>
-                  </div>
-                  <div className="mult-item">
-                    <span className="mult-value">*</span>
-                    <span>Zéro ou plusieurs</span>
-                  </div>
-                  <div className="mult-item">
-                    <span className="mult-value">1..*</span>
-                    <span>Un ou plusieurs</span>
-                  </div>
-                  <div className="mult-item">
-                    <span className="mult-value">n..m</span>
-                    <span>De n à m</span>
-                  </div>
-                </div>
+                <MultiplicityDiagram />
               </motion.div>
             )}
 
@@ -501,103 +487,28 @@ export default function Chapter5() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>📝 Exemple Complet: Système de Commandes</h2>
+                <h2>📝 Exemples Complets</h2>
                 
-                <div className="full-class-diagram">
-                  <div className="diagram-title">Diagramme de Classes - E-Commerce</div>
-                  <div className="diagram-canvas">
-                    <div className="class-row">
-                      <div className="uml-class">
-                        <div className="class-name">Client</div>
-                        <div className="class-attributes">
-                          <div className="attr">- id: Integer</div>
-                          <div className="attr">- nom: String</div>
-                          <div className="attr">- email: String</div>
-                        </div>
-                        <div className="class-methods">
-                          <div className="method">+ passerCommande(): Commande</div>
-                          <div className="method">+ getCommandes(): List</div>
-                        </div>
-                      </div>
-
-                      <div className="association-line horizontal">
-                        <span className="mult left">1</span>
-                        <div className="line-h"></div>
-                        <span className="mult right">0..*</span>
-                        <span className="assoc-label">passe</span>
-                      </div>
-
-                      <div className="uml-class">
-                        <div className="class-name">Commande</div>
-                        <div className="class-attributes">
-                          <div className="attr">- numero: String</div>
-                          <div className="attr">- date: Date</div>
-                          <div className="attr">- status: String</div>
-                        </div>
-                        <div className="class-methods">
-                          <div className="method">+ calculerTotal(): Double</div>
-                          <div className="method">+ valider(): void</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="composition-line vertical">
-                      <div className="diamond filled"></div>
-                      <div className="line-v"></div>
-                      <span className="mult bottom">1..*</span>
-                    </div>
-
-                    <div className="class-row bottom">
-                      <div className="uml-class">
-                        <div className="class-name">LigneCommande</div>
-                        <div className="class-attributes">
-                          <div className="attr">- quantite: Integer</div>
-                          <div className="attr">- prixUnitaire: Double</div>
-                        </div>
-                        <div className="class-methods">
-                          <div className="method">+ getSousTotal(): Double</div>
-                        </div>
-                      </div>
-
-                      <div className="association-line horizontal">
-                        <span className="mult left">*</span>
-                        <div className="line-h"></div>
-                        <span className="mult right">1</span>
-                      </div>
-
-                      <div className="uml-class">
-                        <div className="class-name">Produit</div>
-                        <div className="class-attributes">
-                          <div className="attr">- reference: String</div>
-                          <div className="attr">- nom: String</div>
-                          <div className="attr">- prix: Double</div>
-                          <div className="attr">- stock: Integer</div>
-                        </div>
-                        <div className="class-methods">
-                          <div className="method">+ estDisponible(): Boolean</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <VehicleClassDiagram />
+                <LibraryClassDiagram />
 
                 <h3>Points Importants</h3>
                 <div className="key-points">
                   <div className="key-point">
                     <span className="point-number">1</span>
-                    <p><strong>Client → Commande:</strong> Association 1 vers 0..* (un client peut avoir plusieurs commandes)</p>
+                    <p><strong>Héritage:</strong> Représenté par une flèche avec triangle vide (Voiture hérite de Véhicule)</p>
                   </div>
                   <div className="key-point">
                     <span className="point-number">2</span>
-                    <p><strong>Commande ◆→ LigneCommande:</strong> Composition (les lignes n'existent pas sans la commande)</p>
+                    <p><strong>Composition:</strong> Losange plein - les parties n'existent pas sans le tout</p>
                   </div>
                   <div className="key-point">
                     <span className="point-number">3</span>
-                    <p><strong>LigneCommande → Produit:</strong> Association * vers 1 (plusieurs lignes pour un même produit)</p>
+                    <p><strong>Agrégation:</strong> Losange vide - relation plus faible, parties peuvent exister seules</p>
                   </div>
                   <div className="key-point">
                     <span className="point-number">4</span>
-                    <p>Les méthodes reflètent le comportement métier (calculerTotal, valider, etc.)</p>
+                    <p><strong>Multiplicités:</strong> Indiquent le nombre d'instances dans la relation (1, *, 0..1, 1..*)</p>
                   </div>
                 </div>
               </motion.div>

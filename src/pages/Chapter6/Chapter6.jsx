@@ -16,6 +16,13 @@ import {
   Box,
   LifeBuoy
 } from 'lucide-react';
+import {
+  ATMSequenceDiagram,
+  AuthSequenceDiagram,
+  AltSequenceDiagram,
+  LoopSequenceDiagram,
+  SequenceNotationDiagram
+} from '../../components/Diagrams/SequenceDiagramSVG';
 import './Chapter6.css';
 
 const sections = [
@@ -159,6 +166,8 @@ function ElementsSection() {
         <Box className="section-icon" />
         Éléments de Base
       </h2>
+
+      <SequenceNotationDiagram />
 
       <h3>1. Ligne de Vie (Lifeline)</h3>
 
@@ -528,160 +537,19 @@ function ExampleSection() {
     <div className="section">
       <h2>
         <Zap className="section-icon" />
-        Exemple : Retrait GAB
+        Exemples de Diagrammes de Séquence
       </h2>
 
       <p className="intro-text">
-        Voici un exemple complet de diagramme de séquence pour un retrait d'argent 
-        à un Guichet Automatique Bancaire (GAB).
+        Voici des exemples complets de diagrammes de séquence pour différents scénarios.
       </p>
 
-      <div className="sequence-diagram">
-        <div className="diagram-header">
-          <span className="diagram-title">sd Retrait GAB</span>
-        </div>
+      <AuthSequenceDiagram />
+      <ATMSequenceDiagram />
+      <AltSequenceDiagram />
+      <LoopSequenceDiagram />
 
-        <div className="diagram-content">
-          {/* Participants */}
-          <div className="participants-row">
-            <div className="sd-participant actor">
-              <div className="sd-actor-icon">👤</div>
-              <span>Client</span>
-            </div>
-            <div className="sd-participant">
-              <div className="sd-box">:IHM</div>
-            </div>
-            <div className="sd-participant">
-              <div className="sd-box">:Contrôleur</div>
-            </div>
-            <div className="sd-participant">
-              <div className="sd-box">:Compte</div>
-            </div>
-            <div className="sd-participant">
-              <div className="sd-box">:Distributeur</div>
-            </div>
-          </div>
-
-          {/* Interactions */}
-          <div className="interactions">
-            <div className="interaction-row">
-              <div className="msg-full" data-from="0" data-to="1">
-                <span className="msg-text">1: insérerCarte()</span>
-              </div>
-            </div>
-
-            <div className="interaction-row">
-              <div className="msg-full" data-from="1" data-to="2">
-                <span className="msg-text">2: validerCarte(numCarte)</span>
-              </div>
-            </div>
-
-            <div className="interaction-row">
-              <div className="msg-return" data-from="2" data-to="1">
-                <span className="msg-text">carteValide</span>
-              </div>
-            </div>
-
-            <div className="interaction-row">
-              <div className="msg-full" data-from="1" data-to="0">
-                <span className="msg-text">3: demanderCode()</span>
-              </div>
-            </div>
-
-            <div className="interaction-row">
-              <div className="msg-full" data-from="0" data-to="1">
-                <span className="msg-text">4: saisirCode(code)</span>
-              </div>
-            </div>
-
-            {/* Loop Fragment */}
-            <div className="fragment-wrapper loop">
-              <div className="fragment-header">
-                <span className="fragment-type">loop</span>
-                <span className="fragment-guard">[essais &lt; 3 && !codeValide]</span>
-              </div>
-              <div className="fragment-body">
-                <div className="interaction-row">
-                  <div className="msg-full" data-from="1" data-to="2">
-                    <span className="msg-text">5: vérifierCode(code)</span>
-                  </div>
-                </div>
-
-                {/* Alt Fragment */}
-                <div className="fragment-wrapper alt nested">
-                  <div className="fragment-header">
-                    <span className="fragment-type">alt</span>
-                  </div>
-                  <div className="fragment-body">
-                    <div className="operand-header">[code incorrect]</div>
-                    <div className="interaction-row">
-                      <div className="msg-return" data-from="2" data-to="1">
-                        <span className="msg-text">codeInvalide</span>
-                      </div>
-                    </div>
-                    <div className="interaction-row">
-                      <div className="msg-full" data-from="1" data-to="0">
-                        <span className="msg-text">afficherErreur()</span>
-                      </div>
-                    </div>
-                    <div className="operand-divider"></div>
-                    <div className="operand-header">[code correct]</div>
-                    <div className="interaction-row">
-                      <div className="msg-return" data-from="2" data-to="1">
-                        <span className="msg-text">codeValide</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="interaction-row">
-              <div className="msg-full" data-from="1" data-to="0">
-                <span className="msg-text">6: demanderMontant()</span>
-              </div>
-            </div>
-
-            <div className="interaction-row">
-              <div className="msg-full" data-from="0" data-to="1">
-                <span className="msg-text">7: saisirMontant(montant)</span>
-              </div>
-            </div>
-
-            <div className="interaction-row">
-              <div className="msg-full" data-from="1" data-to="2">
-                <span className="msg-text">8: effectuerRetrait(numCarte, montant)</span>
-              </div>
-            </div>
-
-            <div className="interaction-row">
-              <div className="msg-full" data-from="2" data-to="3">
-                <span className="msg-text">9: débiter(montant)</span>
-              </div>
-            </div>
-
-            <div className="interaction-row">
-              <div className="msg-return" data-from="3" data-to="2">
-                <span className="msg-text">ok</span>
-              </div>
-            </div>
-
-            <div className="interaction-row">
-              <div className="msg-full" data-from="2" data-to="4">
-                <span className="msg-text">10: distribuerBillets(montant)</span>
-              </div>
-            </div>
-
-            <div className="interaction-row">
-              <div className="msg-full" data-from="1" data-to="0">
-                <span className="msg-text">11: éjecterCarte()</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h3>Points Clés de l'Exemple</h3>
+      <h3>Points Clés</h3>
 
       <div className="key-points">
         <div className="key-point">
@@ -693,13 +561,13 @@ function ExampleSection() {
         <div className="key-point">
           <ChevronRight className="point-icon" />
           <div>
-            <strong>Fragment loop</strong> : Gère les tentatives multiples de saisie du code
+            <strong>Fragment loop</strong> : Gère les itérations et boucles
           </div>
         </div>
         <div className="key-point">
           <ChevronRight className="point-icon" />
           <div>
-            <strong>Fragment alt</strong> : Distingue le cas code correct/incorrect
+            <strong>Fragment alt</strong> : Distingue les différentes alternatives (if-else)
           </div>
         </div>
         <div className="key-point">

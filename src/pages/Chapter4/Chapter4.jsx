@@ -11,6 +11,11 @@ import {
   ArrowRight,
   CheckCircle2
 } from 'lucide-react';
+import { 
+  LibraryUseCaseDiagram, 
+  ATMUseCaseDiagram, 
+  SimpleUseCaseDiagram 
+} from '../../components/Diagrams/UseCaseDiagramSVG';
 import './Chapter4.css';
 
 const sections = [
@@ -114,6 +119,9 @@ export default function Chapter4() {
                     </div>
                   </div>
                 </div>
+
+                <h3>Structure de Base</h3>
+                <SimpleUseCaseDiagram />
 
                 <h3>Éléments du Diagramme</h3>
                 <div className="elements-showcase">
@@ -486,66 +494,22 @@ export default function Chapter4() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>📝 Exemple Complet: Système GAB</h2>
+                <h2>📝 Exemple Complet: Système Bibliothèque &amp; GAB</h2>
                 
                 <div className="info-card">
                   <div>
                     <h4>Contexte</h4>
                     <p>
-                      Modélisation d'un <strong>Guichet Automatique Bancaire (GAB)</strong> 
-                      permettant aux clients de retirer de l'argent, consulter leur solde, 
-                      et effectuer des virements.
+                      Voici des exemples complets de diagrammes de cas d'utilisation pour 
+                      un <strong>Système de Gestion de Bibliothèque</strong> et un 
+                      <strong> Guichet Automatique Bancaire (GAB)</strong>.
                     </p>
                   </div>
                 </div>
 
-                <div className="full-diagram">
-                  <div className="diagram-title">
-                    <span>Diagramme de Cas d'Utilisation - GAB</span>
-                  </div>
-                  <div className="diagram-content">
-                    <div className="actors-left">
-                      <div className="actor-with-label">
-                        <div className="stick-figure">
-                          <div className="head"></div>
-                          <div className="body"></div>
-                          <div className="arms"></div>
-                          <div className="legs"></div>
-                        </div>
-                        <span>Client</span>
-                      </div>
-                    </div>
-
-                    <div className="system-boundary">
-                      <div className="system-title">GAB</div>
-                      <div className="usecases-list">
-                        <div className="uc-with-relations">
-                          <div className="uc-ellipse">Retirer argent</div>
-                          <div className="include-arrow">
-                            <ArrowRight size={14} />
-                            <span>«include»</span>
-                          </div>
-                        </div>
-                        <div className="uc-ellipse">Consulter solde</div>
-                        <div className="uc-ellipse">Effectuer virement</div>
-                        <div className="uc-ellipse included">S'authentifier</div>
-                        <div className="uc-with-relations">
-                          <div className="uc-ellipse optional">Imprimer reçu</div>
-                          <div className="extend-note">«extend»</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="actors-right">
-                      <div className="actor-with-label system">
-                        <div className="actor-box small">
-                          <span>«actor»</span>
-                          <span>Système Bancaire</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {/* Proper SVG Diagrams */}
+                <LibraryUseCaseDiagram />
+                <ATMUseCaseDiagram />
 
                 <h3>Points Clés à Retenir</h3>
                 <div className="key-points">
