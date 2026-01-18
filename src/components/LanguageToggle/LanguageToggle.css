@@ -1,0 +1,36 @@
+.language-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.language-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.language-toggle:active {
+  transform: translateY(0);
+}
+
+.language-code {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+  letter-spacing: 0.5px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .language-toggle {
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  }
+}

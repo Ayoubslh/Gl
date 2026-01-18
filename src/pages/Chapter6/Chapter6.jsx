@@ -23,18 +23,20 @@ import {
   LoopSequenceDiagram,
   SequenceNotationDiagram
 } from '../../components/Diagrams/SequenceDiagramSVG';
+import { useLanguage } from '../../context/LanguageContext';
 import './Chapter6.css';
 
-const sections = [
-  { id: 'intro', title: 'Introduction', icon: GitBranch },
-  { id: 'elements', title: 'Éléments de Base', icon: Box },
-  { id: 'messages', title: 'Types de Messages', icon: MessageSquare },
-  { id: 'fragments', title: 'Fragments Combinés', icon: Repeat },
-  { id: 'example', title: 'Exemple Complet', icon: Zap }
-];
-
 export default function Chapter6() {
+  const { t } = useLanguage();
   const [activeSection, setActiveSection] = useState('intro');
+
+  const sections = [
+    { id: 'intro', title: t('common.introduction'), icon: GitBranch },
+    { id: 'elements', title: t('common.elements'), icon: Box },
+    { id: 'messages', title: t('chapter6.messages.title'), icon: MessageSquare },
+    { id: 'fragments', title: t('chapter6.fragments.title'), icon: Repeat },
+    { id: 'example', title: t('common.example'), icon: Zap }
+  ];
 
   return (
     <div className="chapter-page">
@@ -43,10 +45,10 @@ export default function Chapter6() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <div className="chapter-number">Chapitre 06</div>
-        <h1>Diagramme de Séquence</h1>
+        <div className="chapter-number">{t('common.chapter')} 06</div>
+        <h1>{t('chapter6.title')}</h1>
         <p className="chapter-subtitle">
-          Modélisation des interactions temporelles entre objets
+          {t('chapter6.subtitle')}
         </p>
       </motion.div>
 
@@ -72,34 +74,32 @@ export default function Chapter6() {
           transition={{ duration: 0.3 }}
           className="section-content"
         >
-          {activeSection === 'intro' && <IntroSection />}
-          {activeSection === 'elements' && <ElementsSection />}
-          {activeSection === 'messages' && <MessagesSection />}
-          {activeSection === 'fragments' && <FragmentsSection />}
-          {activeSection === 'example' && <ExampleSection />}
+          {activeSection === 'intro' && <IntroSection t={t} />}
+          {activeSection === 'elements' && <ElementsSection t={t} />}
+          {activeSection === 'messages' && <MessagesSection t={t} />}
+          {activeSection === 'fragments' && <FragmentsSection t={t} />}
+          {activeSection === 'example' && <ExampleSection t={t} />}
         </motion.div>
       </AnimatePresence>
     </div>
   );
 }
 
-function IntroSection() {
+function IntroSection({ t }) {
   return (
     <div className="section">
       <h2>
         <GitBranch className="section-icon" />
-        Qu'est-ce qu'un Diagramme de Séquence ?
+        {t('chapter6.intro.title')}
       </h2>
 
       <div className="intro-card highlight">
         <p>
-          Le <strong>diagramme de séquence</strong> est un diagramme d'interaction qui 
-          montre comment les objets communiquent entre eux dans le temps. Il met l'accent 
-          sur l'<strong>ordre chronologique</strong> des messages échangés.
+          {t('chapter6.intro.description')}
         </p>
       </div>
 
-      <h3>Caractéristiques Principales</h3>
+      <h3>{t('common.characteristics')}</h3>
 
       <div className="features-grid">
         <div className="feature-card">
@@ -159,12 +159,12 @@ function IntroSection() {
   );
 }
 
-function ElementsSection() {
+function ElementsSection({ t }) {
   return (
     <div className="section">
       <h2>
         <Box className="section-icon" />
-        Éléments de Base
+        {t('chapter6.elements.title')}
       </h2>
 
       <SequenceNotationDiagram />
@@ -261,12 +261,12 @@ function ElementsSection() {
   );
 }
 
-function MessagesSection() {
+function MessagesSection({ t }) {
   return (
     <div className="section">
       <h2>
         <MessageSquare className="section-icon" />
-        Types de Messages
+        {t('chapter6.messages.title')}
       </h2>
 
       <div className="messages-showcase">
@@ -382,17 +382,16 @@ function MessagesSection() {
   );
 }
 
-function FragmentsSection() {
+function FragmentsSection({ t }) {
   return (
     <div className="section">
       <h2>
         <Repeat className="section-icon" />
-        Fragments Combinés
+        {t('chapter6.fragments.title')}
       </h2>
 
       <p className="intro-text">
-        Les <strong>fragments combinés</strong> permettent de représenter des comportements 
-        conditionnels, des boucles et d'autres structures de contrôle dans un diagramme de séquence.
+        {t('chapter6.fragments.description')}
       </p>
 
       <div className="fragments-grid">
@@ -532,16 +531,16 @@ function FragmentsSection() {
   );
 }
 
-function ExampleSection() {
+function ExampleSection({ t }) {
   return (
     <div className="section">
       <h2>
         <Zap className="section-icon" />
-        Exemples de Diagrammes de Séquence
+        {t('chapter6.example.title')}
       </h2>
 
       <p className="intro-text">
-        Voici des exemples complets de diagrammes de séquence pour différents scénarios.
+        {t('chapter6.example.description')}
       </p>
 
       <AuthSequenceDiagram />
@@ -549,7 +548,7 @@ function ExampleSection() {
       <AltSequenceDiagram />
       <LoopSequenceDiagram />
 
-      <h3>Points Clés</h3>
+      <h3>{t('common.keyPoints')}</h3>
 
       <div className="key-points">
         <div className="key-point">

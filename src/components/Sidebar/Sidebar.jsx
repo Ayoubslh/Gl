@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../context/LanguageContext';
+import LanguageToggle from '../LanguageToggle/LanguageToggle';
 import { 
   BookOpen, 
   Users, 
@@ -17,88 +19,91 @@ import {
 } from 'lucide-react';
 import './Sidebar.css';
 
-const chapters = [
+const getChapters = (t) => [
   {
     id: 'home',
     path: '/',
-    title: 'Accueil',
+    title: t('nav.home'),
     icon: Home,
-    description: 'Vue d\'ensemble'
+    description: t('nav.home')
   },
   {
     id: 'chapter1',
     path: '/chapter1',
-    title: 'Chapitre 1',
-    subtitle: 'Intro Génie Logiciel',
+    title: 'Ch. 1',
+    subtitle: t('nav.chapter1'),
     icon: Cog,
-    description: 'Fondamentaux'
+    description: t('nav.chapter1')
   },
   {
     id: 'chapter2',
     path: '/chapter2',
-    title: 'Chapitre 2',
-    subtitle: 'Processus de Développement',
+    title: 'Ch. 2',
+    subtitle: t('nav.chapter2'),
     icon: Settings,
-    description: 'Merise, UP, 2TUP'
+    description: t('nav.chapter2')
   },
   {
     id: 'chapter3',
     path: '/chapter3',
-    title: 'Chapitre 3',
-    subtitle: 'Introduction à UML',
+    title: 'Ch. 3',
+    subtitle: t('nav.chapter3'),
     icon: Layers,
-    description: 'Concepts UML'
+    description: t('nav.chapter3')
   },
   {
     id: 'chapter4',
     path: '/chapter4',
-    title: 'Chapitre 4',
-    subtitle: 'Cas d\'Utilisation',
+    title: 'Ch. 4',
+    subtitle: t('nav.chapter4'),
     icon: Users,
-    description: 'Use Cases'
+    description: t('nav.chapter4')
   },
   {
     id: 'chapter5',
     path: '/chapter5',
-    title: 'Chapitre 5',
-    subtitle: 'Classes & Objets',
+    title: 'Ch. 5',
+    subtitle: t('nav.chapter5'),
     icon: Box,
-    description: 'Diagrammes de Classes'
+    description: t('nav.chapter5')
   },
   {
     id: 'chapter6',
     path: '/chapter6',
-    title: 'Chapitre 6',
-    subtitle: 'Diagrammes de Séquence',
+    title: 'Ch. 6',
+    subtitle: t('nav.chapter6'),
     icon: GitBranch,
-    description: 'Interactions'
+    description: t('nav.chapter6')
   },
   {
     id: 'chapter7',
     path: '/chapter7',
-    title: 'Chapitre 7',
-    subtitle: 'Diagrammes d\'Activité',
+    title: 'Ch. 7',
+    subtitle: t('nav.chapter7'),
     icon: Activity,
-    description: 'Flux & Actions'
+    description: t('nav.chapter7')
   },
   {
     id: 'chapter8',
     path: '/chapter8',
-    title: 'Chapitre 8',
-    subtitle: 'Diagrammes d\'États',
+    title: 'Ch. 8',
+    subtitle: t('nav.chapter8'),
     icon: RotateCcw,
-    description: 'State Diagrams'
+    description: t('nav.chapter8')
   },
   {
     id: 'quiz',
     path: '/quiz',
-    title: 'Quiz Interactif',
+    title: t('nav.quiz'),
     icon: GraduationCap,
-    description: 'Testez vos connaissances'
+    description: t('nav.quiz')
   }
 ];
 
 export default function Sidebar() {
+  const { t, language } = useLanguage();
+  const chapters = getChapters(t);
+  
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
@@ -116,18 +121,19 @@ export default function Sidebar() {
             <span className="logo-subtitle">UML Mastery</span>
           </div>
         </motion.div>
+        <LanguageToggle />
       </div>
 
       <nav className="sidebar-nav">
         <div className="nav-section">
-          <span className="nav-section-title">Navigation</span>
+          <span className="nav-section-title">{t('nav.chapters')}</span>
           <ul className="nav-list">
             {chapters.map((chapter, index) => (
               <motion.li 
                 key={chapter.id}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
               >
                 <NavLink 
                   to={chapter.path}
@@ -154,12 +160,12 @@ export default function Sidebar() {
         <div className="progress-card">
           <div className="progress-header">
             <Sparkles size={16} />
-            <span>Votre Progression</span>
+            <span>{language === 'fr' ? 'Votre Progression' : 'Your Progress'}</span>
           </div>
           <div className="progress-bar">
             <div className="progress-fill" style={{ width: '45%' }}></div>
           </div>
-          <span className="progress-text">45% complété</span>
+          <span className="progress-text">{language === 'fr' ? '45% complété' : '45% completed'}</span>
         </div>
       </div>
     </aside>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../../context/LanguageContext';
 import { 
   Brain, 
   CheckCircle2, 
@@ -13,7 +14,7 @@ import {
 } from 'lucide-react';
 import './Quiz.css';
 
-const quizQuestions = [
+const quizQuestionsFr = [
   // Chapter 1 - Software Engineering Introduction
   {
     id: 1,
@@ -375,7 +376,242 @@ const quizQuestions = [
   }
 ];
 
+const quizQuestionsEn = [
+  // Chapter 1 - Software Engineering Introduction
+  {
+    id: 1,
+    category: 'Software Eng.',
+    question: 'What is software engineering?',
+    options: [
+      'A programming language',
+      'The application of a systematic approach to software development',
+      'A type of software',
+      'A testing method'
+    ],
+    correct: 1,
+    explanation: 'Software engineering is the application of a systematic, disciplined, and quantifiable approach to the development, operation, and maintenance of software.'
+  },
+  {
+    id: 2,
+    category: 'Software Eng.',
+    question: 'What is the main cause of the "software crisis"?',
+    options: [
+      'Lack of computers',
+      'Increasing complexity and lack of methods',
+      'Software prices too low',
+      'Too many programmers'
+    ],
+    correct: 1,
+    explanation: 'The software crisis is due to the increasing complexity of systems, lack of rigorous methodologies, and poor project management.'
+  },
+  {
+    id: 3,
+    category: 'Software Eng.',
+    question: 'Which quality factor describes the ability to function under abnormal conditions?',
+    options: [
+      'Validity',
+      'Reliability',
+      'Robustness',
+      'Portability'
+    ],
+    correct: 2,
+    explanation: 'Robustness is the ability of software to function even outside normal usage conditions.'
+  },
+  // Chapter 2 - Development Process
+  {
+    id: 4,
+    category: 'Process',
+    question: 'What are the three cycles of the MERISE method?',
+    options: [
+      'Analysis, Design, Implementation',
+      'Abstraction, Decision, Lifecycle',
+      'Inception, Elaboration, Construction',
+      'Study, Development, Maintenance'
+    ],
+    correct: 1,
+    explanation: 'MERISE uses three cycles: the abstraction cycle (data, processing), the decision cycle (steering committee), and the lifecycle (design, implementation, maintenance).'
+  },
+  {
+    id: 5,
+    category: 'Process',
+    question: 'How many phases does the Unified Process (UP) have?',
+    options: [
+      '3 phases',
+      '4 phases',
+      '5 phases',
+      '6 phases'
+    ],
+    correct: 1,
+    explanation: 'UP has 4 phases: Inception, Elaboration, Construction, and Transition.'
+  },
+  // Chapter 3 - UML Introduction
+  {
+    id: 6,
+    category: 'UML',
+    question: 'How many standard diagrams are in UML 2.x?',
+    options: [
+      '9 diagrams',
+      '11 diagrams',
+      '13 diagrams',
+      '15 diagrams'
+    ],
+    correct: 2,
+    explanation: 'UML 2.x defines 13 standard diagrams, divided into structural diagrams (6) and behavioral diagrams (7).'
+  },
+  {
+    id: 7,
+    category: 'UML',
+    question: 'Which view is at the center of the 4+1 views?',
+    options: [
+      'Logical View',
+      'Use Case View',
+      'Development View',
+      'Physical View'
+    ],
+    correct: 1,
+    explanation: 'The Use Case View is at the center of the 4+1 views. It guides other views by describing user requirements.'
+  },
+  // Chapter 4 - Use Case Diagram
+  {
+    id: 8,
+    category: 'Use Cases',
+    question: 'What does an actor represent in a use case diagram?',
+    options: [
+      'A system function',
+      'An external entity interacting with the system',
+      'An internal database',
+      'A programming class'
+    ],
+    correct: 1,
+    explanation: 'An actor is an external entity (human, system, time) that interacts with the system.'
+  },
+  {
+    id: 9,
+    category: 'Use Cases',
+    question: 'What is the difference between <<include>> and <<extend>>?',
+    options: [
+      'Include is optional, extend is mandatory',
+      'Include is mandatory, extend is optional/conditional',
+      'No difference',
+      'Extend is only for actors'
+    ],
+    correct: 1,
+    explanation: '<<include>> indicates that a use case always includes another (mandatory). <<extend>> indicates optional extension under certain conditions.'
+  },
+  // Chapter 5 - Class Diagram
+  {
+    id: 10,
+    category: 'Classes',
+    question: 'What is the visibility of an attribute marked with "-"?',
+    options: [
+      'Public',
+      'Private',
+      'Protected',
+      'Package'
+    ],
+    correct: 1,
+    explanation: 'The "-" symbol indicates private visibility: the attribute is only accessible within the class itself.'
+  },
+  {
+    id: 11,
+    category: 'Classes',
+    question: 'What is the difference between aggregation and composition?',
+    options: [
+      'No difference',
+      'Aggregation is stronger than composition',
+      'Composition implies part destruction when whole is destroyed',
+      'Aggregation uses a filled diamond'
+    ],
+    correct: 2,
+    explanation: 'Composition (filled diamond) represents a strong relationship where parts cannot exist without the whole. When the whole is destroyed, its parts are too.'
+  },
+  // Chapter 6 - Sequence Diagram
+  {
+    id: 12,
+    category: 'Sequence',
+    question: 'What does a lifeline represent in a sequence diagram?',
+    options: [
+      'A method',
+      'A participant in the interaction over time',
+      'A message',
+      'A condition'
+    ],
+    correct: 1,
+    explanation: 'A lifeline represents a participant (object or actor) in the interaction, showing its existence over time (vertical axis).'
+  },
+  {
+    id: 13,
+    category: 'Sequence',
+    question: 'What is the difference between synchronous and asynchronous messages?',
+    options: [
+      'Synchronous is faster',
+      'Synchronous blocks sender until response, asynchronous does not',
+      'Asynchronous is bidirectional',
+      'No difference'
+    ],
+    correct: 1,
+    explanation: 'A synchronous message (solid arrow) blocks the sender who waits for a response. An asynchronous message (open arrow) allows the sender to continue without waiting.'
+  },
+  // Chapter 7 - Activity Diagram
+  {
+    id: 14,
+    category: 'Activity',
+    question: 'What is the starting node in an activity diagram called?',
+    options: [
+      'Start node',
+      'Initial node',
+      'Entry point',
+      'Begin node'
+    ],
+    correct: 1,
+    explanation: 'The initial node (filled black circle) marks the starting point of an activity. There can only be one per partition.'
+  },
+  {
+    id: 15,
+    category: 'Activity',
+    question: 'What is the difference between a decision node and a fork?',
+    options: [
+      'Decision for parallelism, fork for conditions',
+      'Decision chooses ONE branch, fork launches ALL branches in parallel',
+      'Fork is faster',
+      'No difference'
+    ],
+    correct: 1,
+    explanation: 'The decision node (diamond) chooses a single branch based on a condition. The fork (bar) launches all branches simultaneously in parallel.'
+  },
+  // Chapter 8 - State Diagram
+  {
+    id: 16,
+    category: 'States',
+    question: 'What is a state in a state diagram?',
+    options: [
+      'A single action',
+      'A stable situation where an object satisfies a condition',
+      'A transition',
+      'A message'
+    ],
+    correct: 1,
+    explanation: 'A state represents a stable situation in which an object satisfies a condition, executes an activity, or waits for an event.'
+  },
+  {
+    id: 17,
+    category: 'States',
+    question: 'What is the correct syntax of a transition?',
+    options: [
+      'action [guard] / event',
+      'event [guard] / action',
+      '[guard] event action',
+      'event action guard'
+    ],
+    correct: 1,
+    explanation: 'The syntax of a transition is: event [guard] / action. The event triggers the transition, the guard is a condition, and the action is executed during the transition.'
+  }
+];
+
 export default function Quiz() {
+  const { language } = useLanguage();
+  const quizQuestions = language === 'fr' ? quizQuestionsFr : quizQuestionsEn;
+  
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showExplanation, setShowExplanation] = useState(false);
@@ -428,7 +664,7 @@ export default function Quiz() {
   };
 
   if (!quizStarted) {
-    return <QuizIntro onStart={() => setQuizStarted(true)} />;
+    return <QuizIntro onStart={() => setQuizStarted(true)} language={language} />;
   }
 
   if (quizComplete) {
@@ -438,7 +674,8 @@ export default function Quiz() {
         total={quizQuestions.length} 
         answers={answers}
         questions={quizQuestions}
-        onRestart={handleRestart} 
+        onRestart={handleRestart}
+        language={language}
       />
     );
   }
@@ -450,7 +687,7 @@ export default function Quiz() {
         <div className="quiz-progress">
           <div className="progress-info">
             <span className="progress-text">
-              Question {currentQuestion + 1} sur {quizQuestions.length}
+              Question {currentQuestion + 1} {language === 'fr' ? 'sur' : 'of'} {quizQuestions.length}
             </span>
             <span className="score-text">Score: {score}</span>
           </div>
@@ -527,7 +764,7 @@ export default function Quiz() {
                 >
                   <div className="explanation-header">
                     <Lightbulb size={18} />
-                    <span>Explication</span>
+                    <span>{language === 'fr' ? 'Explication' : 'Explanation'}</span>
                   </div>
                   <p>{question.explanation}</p>
                 </motion.div>
@@ -542,18 +779,18 @@ export default function Quiz() {
                   onClick={handleConfirm}
                   disabled={selectedAnswer === null}
                 >
-                  Valider ma réponse
+                  {language === 'fr' ? 'Valider ma réponse' : 'Submit answer'}
                 </button>
               ) : (
                 <button className="btn-primary" onClick={handleNext}>
                   {currentQuestion < quizQuestions.length - 1 ? (
                     <>
-                      <span>Question suivante</span>
+                      <span>{language === 'fr' ? 'Question suivante' : 'Next question'}</span>
                       <ArrowRight size={18} />
                     </>
                   ) : (
                     <>
-                      <span>Voir les résultats</span>
+                      <span>{language === 'fr' ? 'Voir les résultats' : 'See results'}</span>
                       <Trophy size={18} />
                     </>
                   )}
@@ -567,7 +804,7 @@ export default function Quiz() {
   );
 }
 
-function QuizIntro({ onStart }) {
+function QuizIntro({ onStart, language }) {
   return (
     <div className="quiz-page">
       <motion.div 
@@ -580,36 +817,37 @@ function QuizIntro({ onStart }) {
           <Brain size={48} />
         </div>
         
-        <h1>Quiz UML</h1>
+        <h1>{language === 'fr' ? 'Quiz UML' : 'UML Quiz'}</h1>
         <p className="intro-description">
-          Testez vos connaissances sur les diagrammes de cas d'utilisation 
-          et les diagrammes de classes.
+          {language === 'fr' 
+            ? 'Testez vos connaissances sur les diagrammes de cas d\'utilisation et les diagrammes de classes.'
+            : 'Test your knowledge on use case diagrams and class diagrams.'}
         </p>
 
         <div className="quiz-stats">
           <div className="stat-item">
             <Target size={20} />
-            <span>{quizQuestions.length} questions</span>
+            <span>{language === 'fr' ? `${quizQuestionsFr.length} questions` : `${quizQuestionsEn.length} questions`}</span>
           </div>
           <div className="stat-item">
             <Clock size={20} />
-            <span>~10 minutes</span>
+            <span>~10 {language === 'fr' ? 'minutes' : 'minutes'}</span>
           </div>
         </div>
 
         <div className="quiz-topics">
-          <h3>Sujets couverts</h3>
+          <h3>{language === 'fr' ? 'Sujets couverts' : 'Topics covered'}</h3>
           <div className="topic-tags">
-            <span className="topic-tag">Cas d'utilisation</span>
-            <span className="topic-tag">Diagrammes de classes</span>
-            <span className="topic-tag">Diagrammes d'objets</span>
-            <span className="topic-tag">Relations UML</span>
-            <span className="topic-tag">Visibilité</span>
+            <span className="topic-tag">{language === 'fr' ? 'Cas d\'utilisation' : 'Use Cases'}</span>
+            <span className="topic-tag">{language === 'fr' ? 'Diagrammes de classes' : 'Class Diagrams'}</span>
+            <span className="topic-tag">{language === 'fr' ? 'Diagrammes de séquence' : 'Sequence Diagrams'}</span>
+            <span className="topic-tag">{language === 'fr' ? 'Diagrammes d\'activité' : 'Activity Diagrams'}</span>
+            <span className="topic-tag">{language === 'fr' ? 'Diagrammes d\'états' : 'State Diagrams'}</span>
           </div>
         </div>
 
         <button className="btn-start" onClick={onStart}>
-          <span>Commencer le quiz</span>
+          <span>{language === 'fr' ? 'Commencer le quiz' : 'Start quiz'}</span>
           <ArrowRight size={20} />
         </button>
       </motion.div>
@@ -617,21 +855,29 @@ function QuizIntro({ onStart }) {
   );
 }
 
-function QuizResults({ score, total, answers, questions, onRestart }) {
+function QuizResults({ score, total, answers, questions, onRestart, language }) {
   const percentage = Math.round((score / total) * 100);
   
   let message, messageClass;
   if (percentage >= 80) {
-    message = 'Excellent ! Vous maîtrisez les concepts UML !';
+    message = language === 'fr' 
+      ? 'Excellent ! Vous maîtrisez les concepts UML !' 
+      : 'Excellent! You have mastered UML concepts!';
     messageClass = 'excellent';
   } else if (percentage >= 60) {
-    message = 'Bien joué ! Continuez à réviser pour parfaire vos connaissances.';
+    message = language === 'fr' 
+      ? 'Bien joué ! Continuez à réviser pour parfaire vos connaissances.' 
+      : 'Good job! Keep reviewing to perfect your knowledge.';
     messageClass = 'good';
   } else if (percentage >= 40) {
-    message = 'Pas mal ! Revoyez les chapitres pour améliorer votre score.';
+    message = language === 'fr' 
+      ? 'Pas mal ! Revoyez les chapitres pour améliorer votre score.' 
+      : 'Not bad! Review the chapters to improve your score.';
     messageClass = 'average';
   } else {
-    message = 'Continuez à apprendre ! Relisez les chapitres et réessayez.';
+    message = language === 'fr' 
+      ? 'Continuez à apprendre ! Relisez les chapitres et réessayez.' 
+      : 'Keep learning! Re-read the chapters and try again.';
     messageClass = 'needs-work';
   }
 
@@ -649,12 +895,12 @@ function QuizResults({ score, total, answers, questions, onRestart }) {
             <span className="score-label">{score}/{total}</span>
           </div>
           
-          <h1>Quiz Terminé !</h1>
+          <h1>{language === 'fr' ? 'Quiz Terminé !' : 'Quiz Complete!'}</h1>
           <p className={`results-message ${messageClass}`}>{message}</p>
         </div>
 
         <div className="results-breakdown">
-          <h3>Récapitulatif</h3>
+          <h3>{language === 'fr' ? 'Récapitulatif' : 'Summary'}</h3>
           <div className="breakdown-list">
             {answers.map((answer, index) => {
               const q = questions.find(q => q.id === answer.questionId);
@@ -668,8 +914,8 @@ function QuizResults({ score, total, answers, questions, onRestart }) {
                     )}
                   </div>
                   <div className="breakdown-content">
-                    <span className="breakdown-category">{q.category}</span>
-                    <span className="breakdown-question">{q.question}</span>
+                    <span className="breakdown-category">{q?.category}</span>
+                    <span className="breakdown-question">{q?.question}</span>
                   </div>
                 </div>
               );
@@ -680,7 +926,7 @@ function QuizResults({ score, total, answers, questions, onRestart }) {
         <div className="results-actions">
           <button className="btn-restart" onClick={onRestart}>
             <RotateCcw size={18} />
-            <span>Recommencer</span>
+            <span>{language === 'fr' ? 'Recommencer' : 'Restart'}</span>
           </button>
         </div>
       </motion.div>

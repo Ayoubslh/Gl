@@ -16,18 +16,20 @@ import {
   ATMUseCaseDiagram, 
   SimpleUseCaseDiagram 
 } from '../../components/Diagrams/UseCaseDiagramSVG';
+import { useLanguage } from '../../context/LanguageContext';
 import './Chapter4.css';
 
-const sections = [
-  { id: 'intro', title: 'Introduction', icon: BookOpen },
-  { id: 'actors', title: 'Acteurs', icon: Users },
-  { id: 'usecases', title: 'Cas d\'Utilisation', icon: Target },
-  { id: 'relations', title: 'Relations', icon: Link },
-  { id: 'example', title: 'Exemple Complet', icon: FileText }
-];
-
 export default function Chapter4() {
+  const { t } = useLanguage();
   const [activeSection, setActiveSection] = useState('intro');
+
+  const sections = [
+    { id: 'intro', title: t('common.introduction'), icon: BookOpen },
+    { id: 'actors', title: t('chapter4.elements.actor'), icon: Users },
+    { id: 'usecases', title: t('chapter4.elements.useCase'), icon: Target },
+    { id: 'relations', title: t('common.relations'), icon: Link },
+    { id: 'example', title: t('common.example'), icon: FileText }
+  ];
 
   return (
     <div className="chapter-page">
@@ -38,11 +40,11 @@ export default function Chapter4() {
       >
         <div className="chapter-badge">
           <Users size={20} />
-          <span>Chapitre 4</span>
+          <span>{t('common.chapter')} 4</span>
         </div>
-        <h1>Diagrammes de Cas d'Utilisation</h1>
+        <h1>{t('chapter4.title')}</h1>
         <p className="chapter-description">
-          Modélisez les fonctionnalités du système du point de vue des utilisateurs
+          {t('chapter4.subtitle')}
         </p>
       </motion.header>
 
@@ -74,21 +76,19 @@ export default function Chapter4() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>🎯 Introduction aux Cas d'Utilisation</h2>
+                <h2>🎯 {t('chapter4.intro.title')}</h2>
                 
                 <div className="info-card highlight">
                   <Lightbulb className="card-icon" />
                   <div>
-                    <h4>Définition</h4>
+                    <h4>{t('common.definition')}</h4>
                     <p>
-                      Un <strong>diagramme de cas d'utilisation</strong> représente les fonctionnalités 
-                      (ou unités de fonctionnalités) d'un système du point de vue des utilisateurs. 
-                      Il montre les interactions entre les acteurs et le système.
+                      {t('chapter4.intro.description')}
                     </p>
                   </div>
                 </div>
 
-                <h3>Objectifs</h3>
+                <h3>{t('common.objectives')}</h3>
                 <div className="objectives-grid">
                   <div className="objective-card">
                     <CheckCircle2 className="obj-icon" />
@@ -171,20 +171,18 @@ export default function Chapter4() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>👤 Les Acteurs</h2>
+                <h2>👤 {t('chapter4.elements.actor')}</h2>
                 
                 <div className="info-card">
                   <div>
-                    <h4>Qu'est-ce qu'un acteur?</h4>
+                    <h4>{t('chapter4.elements.actorDesc')}</h4>
                     <p>
-                      Un <strong>acteur</strong> représente un rôle joué par une entité externe 
-                      (personne, système, périphérique) qui interagit avec le système. 
-                      Un acteur n'est pas une personne spécifique mais un <strong>rôle</strong>.
+                      {t('chapter4.elements.actorDesc')}
                     </p>
                   </div>
                 </div>
 
-                <h3>Types d'Acteurs</h3>
+                <h3>{t('common.types')}</h3>
                 <div className="actor-types">
                   <div className="actor-type primary">
                     <div className="actor-icon">
@@ -294,15 +292,13 @@ export default function Chapter4() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>🎯 Les Cas d'Utilisation</h2>
+                <h2>🎯 {t('chapter4.elements.useCase')}</h2>
                 
                 <div className="info-card highlight">
                   <div>
-                    <h4>Définition</h4>
+                    <h4>{t('common.definition')}</h4>
                     <p>
-                      Un <strong>cas d'utilisation</strong> (Use Case) représente une unité cohérente 
-                      de fonctionnalité fournie par le système à un ou plusieurs acteurs. 
-                      Il décrit une séquence d'actions produisant un résultat observable de valeur.
+                      {t('chapter4.elements.useCaseDesc')}
                     </p>
                   </div>
                 </div>
@@ -383,7 +379,7 @@ export default function Chapter4() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>🔗 Relations entre Cas d'Utilisation</h2>
+                <h2>🔗 {t('chapter4.relations.title')}</h2>
 
                 <div className="relations-grid">
                   <div className="relation-card">
@@ -494,7 +490,7 @@ export default function Chapter4() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>📝 Exemple Complet: Système Bibliothèque &amp; GAB</h2>
+                <h2>📝 {t('chapter4.example.title')}</h2>
                 
                 <div className="info-card">
                   <div>
@@ -511,7 +507,7 @@ export default function Chapter4() {
                 <LibraryUseCaseDiagram />
                 <ATMUseCaseDiagram />
 
-                <h3>Points Clés à Retenir</h3>
+                <h3>{t('common.keyPoints')}</h3>
                 <div className="key-points">
                   <div className="key-point">
                     <span className="point-number">1</span>

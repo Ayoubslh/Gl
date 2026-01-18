@@ -19,18 +19,20 @@ import {
   AssociationTypesDiagram,
   MultiplicityDiagram 
 } from '../../components/Diagrams/ClassDiagramSVG';
+import { useLanguage } from '../../context/LanguageContext';
 import './Chapter5.css';
 
-const sections = [
-  { id: 'intro', title: 'Introduction', icon: BookOpen },
-  { id: 'class', title: 'Structure d\'une Classe', icon: Box },
-  { id: 'relations', title: 'Relations', icon: Link },
-  { id: 'objects', title: 'Diagramme d\'Objets', icon: Layers },
-  { id: 'example', title: 'Exemple Complet', icon: FileText }
-];
-
 export default function Chapter5() {
+  const { t } = useLanguage();
   const [activeSection, setActiveSection] = useState('intro');
+
+  const sections = [
+    { id: 'intro', title: t('common.introduction'), icon: BookOpen },
+    { id: 'class', title: t('chapter5.class.title'), icon: Box },
+    { id: 'relations', title: t('common.relations'), icon: Link },
+    { id: 'objects', title: t('chapter3.diagrams.object'), icon: Layers },
+    { id: 'example', title: t('common.example'), icon: FileText }
+  ];
 
   return (
     <div className="chapter-page">
@@ -41,11 +43,11 @@ export default function Chapter5() {
       >
         <div className="chapter-badge">
           <Box size={20} />
-          <span>Chapitre 5</span>
+          <span>{t('common.chapter')} 5</span>
         </div>
-        <h1>Diagrammes de Classes & Objets</h1>
+        <h1>{t('chapter5.title')}</h1>
         <p className="chapter-description">
-          Modélisez la structure statique de votre système avec les classes et leurs relations
+          {t('chapter5.subtitle')}
         </p>
       </motion.header>
 
@@ -77,21 +79,19 @@ export default function Chapter5() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>🎯 Introduction aux Diagrammes de Classes</h2>
+                <h2>🎯 {t('chapter5.intro.title')}</h2>
                 
                 <div className="info-card highlight">
                   <Lightbulb className="card-icon" />
                   <div>
-                    <h4>Définition</h4>
+                    <h4>{t('common.definition')}</h4>
                     <p>
-                      Le <strong>diagramme de classes</strong> est le diagramme le plus important en UML. 
-                      Il représente la structure statique du système en montrant les classes, leurs attributs, 
-                      leurs méthodes et les relations entre elles.
+                      {t('chapter5.intro.description')}
                     </p>
                   </div>
                 </div>
 
-                <h3>Concepts Clés</h3>
+                <h3>{t('common.keyConcepts')}</h3>
                 <div className="concepts-grid">
                   <div className="concept-card">
                     <div className="concept-header">
@@ -153,7 +153,7 @@ export default function Chapter5() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>📦 Structure d'une Classe</h2>
+                <h2>📦 {t('chapter5.class.title')}</h2>
 
                 <div className="class-anatomy">
                   <div className="class-diagram-visual">
@@ -189,7 +189,7 @@ export default function Chapter5() {
                   </div>
                 </div>
 
-                <h3>Visibilité</h3>
+                <h3>{t('chapter5.class.visibilityTitle')}</h3>
                 <div className="visibility-table">
                   <div className="vis-row header">
                     <span>Symbole</span>
@@ -275,7 +275,7 @@ export default function Chapter5() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>🔗 Relations entre Classes</h2>
+                <h2>🔗 {t('chapter5.relations.title')}</h2>
 
                 <AssociationTypesDiagram />
                 <div className="relations-grid">
@@ -375,7 +375,7 @@ export default function Chapter5() {
                   </div>
                 </div>
 
-                <h3>Multiplicités</h3>
+                <h3>{t('chapter5.relations.multiplicityTitle')}</h3>
                 <MultiplicityDiagram />
               </motion.div>
             )}
@@ -487,7 +487,7 @@ export default function Chapter5() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>📝 Exemples Complets</h2>
+                <h2>📝 {t('chapter5.example.title')}</h2>
                 
                 <VehicleClassDiagram />
                 <LibraryClassDiagram />

@@ -5,9 +5,11 @@ import {
   CheckCircle2, XCircle, Layers, Workflow, Settings,
   ChevronDown, ChevronRight, Lightbulb, Box, Wrench
 } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 import './Chapter1.css';
 
 const Chapter1 = () => {
+  const { t } = useLanguage();
   const [activeSection, setActiveSection] = useState('intro');
   const [expandedCards, setExpandedCards] = useState({});
 
@@ -19,64 +21,64 @@ const Chapter1 = () => {
   };
 
   const sections = [
-    { id: 'intro', label: 'Introduction', icon: BookOpen },
-    { id: 'software', label: 'Logiciel', icon: Code },
-    { id: 'engineering', label: 'Génie Logiciel', icon: Cog },
-    { id: 'crisis', label: 'Crise du Logiciel', icon: AlertTriangle },
-    { id: 'quality', label: 'Qualité', icon: Target }
+    { id: 'intro', label: t('chapter1.sections.intro'), icon: BookOpen },
+    { id: 'software', label: t('chapter1.sections.software'), icon: Code },
+    { id: 'engineering', label: t('chapter1.sections.engineering'), icon: Cog },
+    { id: 'crisis', label: t('chapter1.sections.crisis'), icon: AlertTriangle },
+    { id: 'quality', label: t('chapter1.sections.quality'), icon: Target }
   ];
 
   const softwareTypes = [
     {
-      type: 'Logiciel Générique',
+      type: t('chapter1.software.generic'),
       icon: Box,
-      description: 'Produits autonomes vendus sur le marché ouvert',
-      examples: ['Systèmes d\'exploitation', 'Traitements de texte', 'Navigateurs web'],
+      description: t('chapter1.software.genericDesc'),
+      examples: t('chapter1.software.genericEx'),
       color: '#6366f1'
     },
     {
-      type: 'Logiciel Sur Mesure',
+      type: t('chapter1.software.custom'),
       icon: Wrench,
-      description: 'Systèmes commandés par un client particulier',
-      examples: ['Systèmes de contrôle', 'Systèmes de gestion spécifiques', 'Applications métier'],
+      description: t('chapter1.software.customDesc'),
+      examples: t('chapter1.software.customEx'),
       color: '#8b5cf6'
     }
   ];
 
   const softwareCrisisReasons = [
     {
-      title: 'Complexité croissante',
-      description: 'Les logiciels deviennent de plus en plus complexes',
+      title: t('chapter1.crisis.r1'),
+      description: t('chapter1.crisis.r1Desc'),
       icon: Layers
     },
     {
-      title: 'Manque de méthodes',
-      description: 'Absence de méthodologies de développement rigoureuses',
+      title: t('chapter1.crisis.r2'),
+      description: t('chapter1.crisis.r2Desc'),
       icon: Workflow
     },
     {
-      title: 'Gestion déficiente',
-      description: 'Mauvaise estimation des coûts et des délais',
+      title: t('chapter1.crisis.r3'),
+      description: t('chapter1.crisis.r3Desc'),
       icon: Settings
     },
     {
-      title: 'Communication',
-      description: 'Difficultés de communication entre équipes',
+      title: t('chapter1.crisis.r4'),
+      description: t('chapter1.crisis.r4Desc'),
       icon: Users
     }
   ];
 
   const qualityFactors = [
-    { name: 'Validité', description: 'Aptitude à réaliser les tâches définies par la spécification', icon: CheckCircle2 },
-    { name: 'Fiabilité', description: 'Aptitude à fonctionner dans des conditions anormales', icon: Target },
-    { name: 'Robustesse', description: 'Aptitude à fonctionner même en dehors des conditions normales', icon: Cog },
-    { name: 'Extensibilité', description: 'Facilité d\'adaptation aux changements de spécification', icon: Layers },
-    { name: 'Réutilisabilité', description: 'Aptitude à être réutilisé en tout ou partie', icon: Box },
-    { name: 'Compatibilité', description: 'Aptitude à être combiné avec d\'autres logiciels', icon: Workflow },
-    { name: 'Efficacité', description: 'Bonne utilisation des ressources matérielles', icon: Cog },
-    { name: 'Portabilité', description: 'Facilité de transfert vers d\'autres environnements', icon: Settings },
-    { name: 'Vérifiabilité', description: 'Facilité de préparation des procédures de test', icon: CheckCircle2 },
-    { name: 'Intégrité', description: 'Protection contre les accès non autorisés', icon: Target }
+    { name: t('chapter1.quality.validity'), description: t('chapter1.quality.validityDesc'), icon: CheckCircle2 },
+    { name: t('chapter1.quality.reliability'), description: t('chapter1.quality.reliabilityDesc'), icon: Target },
+    { name: t('chapter1.quality.robustness'), description: t('chapter1.quality.robustnessDesc'), icon: Cog },
+    { name: t('chapter1.quality.extensibility'), description: t('chapter1.quality.extensibilityDesc'), icon: Layers },
+    { name: t('chapter1.quality.reusability'), description: t('chapter1.quality.reusabilityDesc'), icon: Box },
+    { name: t('chapter1.quality.compatibility'), description: t('chapter1.quality.compatibilityDesc'), icon: Workflow },
+    { name: t('chapter1.quality.efficiency'), description: t('chapter1.quality.efficiencyDesc'), icon: Cog },
+    { name: t('chapter1.quality.portability'), description: t('chapter1.quality.portabilityDesc'), icon: Settings },
+    { name: t('chapter1.quality.verifiability'), description: t('chapter1.quality.verifiabilityDesc'), icon: CheckCircle2 },
+    { name: t('chapter1.quality.integrity'), description: t('chapter1.quality.integrityDesc'), icon: Target }
   ];
 
   return (
@@ -87,10 +89,10 @@ const Chapter1 = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="chapter-number">Chapitre 01</div>
-        <h1>Introduction au Génie Logiciel</h1>
+        <div className="chapter-number">{t('common.chapter')} 01</div>
+        <h1>{t('chapter1.title')}</h1>
         <p className="chapter-subtitle">
-          Fondamentaux du développement logiciel et importance de l'ingénierie
+          {t('chapter1.subtitle')}
         </p>
       </motion.div>
 
@@ -121,37 +123,35 @@ const Chapter1 = () => {
                 <div className="hero-icon">
                   <BookOpen size={48} />
                 </div>
-                <h2>Qu'est-ce que le Génie Logiciel ?</h2>
+                <h2>{t('chapter1.intro.title')}</h2>
                 <p>
-                  Le génie logiciel est l'application d'une approche systématique, 
-                  disciplinée et quantifiable au développement, à l'exploitation 
-                  et à la maintenance du logiciel.
+                  {t('chapter1.intro.description')}
                 </p>
               </div>
 
               <div className="key-concepts">
-                <h3>Concepts Clés</h3>
+                <h3>{t('common.keyConcepts')}</h3>
                 <div className="concepts-grid">
                   <div className="concept-card">
                     <div className="concept-icon" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
                       <Code size={24} />
                     </div>
-                    <h4>Logiciel</h4>
-                    <p>Ensemble des programmes, procédures et documentation associée</p>
+                    <h4>{t('chapter1.intro.software')}</h4>
+                    <p>{t('chapter1.intro.softwareDesc')}</p>
                   </div>
                   <div className="concept-card">
                     <div className="concept-icon" style={{ background: 'linear-gradient(135deg, #10b981, #059669)' }}>
                       <Cog size={24} />
                     </div>
-                    <h4>Ingénierie</h4>
-                    <p>Application de principes scientifiques et mathématiques</p>
+                    <h4>{t('chapter1.intro.engineering')}</h4>
+                    <p>{t('chapter1.intro.engineeringDesc')}</p>
                   </div>
                   <div className="concept-card">
                     <div className="concept-icon" style={{ background: 'linear-gradient(135deg, #f59e0b, #d97706)' }}>
                       <Users size={24} />
                     </div>
-                    <h4>Processus</h4>
-                    <p>Ensemble structuré d'activités pour le développement</p>
+                    <h4>{t('chapter1.intro.process')}</h4>
+                    <p>{t('chapter1.intro.processDesc')}</p>
                   </div>
                 </div>
               </div>
@@ -166,21 +166,19 @@ const Chapter1 = () => {
               exit={{ opacity: 0, x: -20 }}
               className="content-section"
             >
-              <h2>Le Logiciel</h2>
+              <h2>{t('chapter1.software.title')}</h2>
               
               <div className="definition-box">
                 <Lightbulb size={24} />
                 <div>
-                  <h4>Définition</h4>
+                  <h4>{t('common.definition')}</h4>
                   <p>
-                    Un logiciel est un ensemble de programmes, de procédures, 
-                    de règles et de documentation associée, relatifs au fonctionnement 
-                    d'un ensemble de traitement de l'information.
+                    {t('chapter1.software.definition')}
                   </p>
                 </div>
               </div>
 
-              <h3>Types de Logiciels</h3>
+              <h3>{t('chapter1.software.typesTitle')}</h3>
               <div className="software-types">
                 {softwareTypes.map((type, index) => (
                   <motion.div
@@ -196,7 +194,7 @@ const Chapter1 = () => {
                     </div>
                     <p>{type.description}</p>
                     <div className="examples">
-                      <strong>Exemples:</strong>
+                      <strong>{t('common.examples')}:</strong>
                       <ul>
                         {type.examples.map((ex, i) => (
                           <li key={i}>{ex}</li>
@@ -208,24 +206,24 @@ const Chapter1 = () => {
               </div>
 
               <div className="software-components">
-                <h3>Composants d'un Logiciel</h3>
+                <h3>{t('chapter1.software.componentsTitle')}</h3>
                 <div className="components-diagram">
                   <div className="component-box main">
                     <Code size={24} />
-                    <span>Logiciel</span>
+                    <span>{t('chapter1.software.software')}</span>
                   </div>
                   <div className="component-arrows">
                     <div className="arrow-down"></div>
                   </div>
                   <div className="sub-components">
                     <div className="component-box">
-                      <span>Programmes</span>
+                      <span>{t('chapter1.software.programs')}</span>
                     </div>
                     <div className="component-box">
-                      <span>Données</span>
+                      <span>{t('chapter1.software.data')}</span>
                     </div>
                     <div className="component-box">
-                      <span>Documentation</span>
+                      <span>{t('chapter1.software.documentation')}</span>
                     </div>
                   </div>
                 </div>
@@ -241,53 +239,51 @@ const Chapter1 = () => {
               exit={{ opacity: 0, x: -20 }}
               className="content-section"
             >
-              <h2>Le Génie Logiciel</h2>
+              <h2>{t('chapter1.engineering.title')}</h2>
 
               <div className="definition-box highlight">
                 <Cog size={24} />
                 <div>
-                  <h4>Définition IEEE</h4>
+                  <h4>{t('chapter1.engineering.ieeeTitle')}</h4>
                   <p>
-                    "Application d'une approche systématique, disciplinée et quantifiable 
-                    au développement, à l'exploitation et à la maintenance du logiciel; 
-                    c'est-à-dire l'application de l'ingénierie au logiciel."
+                    {t('chapter1.engineering.ieeeDefinition')}
                   </p>
                 </div>
               </div>
 
               <div className="objectives-section">
-                <h3>Objectifs du Génie Logiciel</h3>
+                <h3>{t('chapter1.engineering.objectivesTitle')}</h3>
                 <div className="objectives-grid">
                   <div className="objective-card">
                     <div className="obj-number">01</div>
-                    <h4>Qualité</h4>
-                    <p>Produire des logiciels de haute qualité répondant aux besoins</p>
+                    <h4>{t('chapter1.engineering.obj1')}</h4>
+                    <p>{t('chapter1.engineering.obj1Desc')}</p>
                   </div>
                   <div className="objective-card">
                     <div className="obj-number">02</div>
-                    <h4>Délais</h4>
-                    <p>Respecter les échéances de livraison</p>
+                    <h4>{t('chapter1.engineering.obj2')}</h4>
+                    <p>{t('chapter1.engineering.obj2Desc')}</p>
                   </div>
                   <div className="objective-card">
                     <div className="obj-number">03</div>
-                    <h4>Coûts</h4>
-                    <p>Maîtriser les coûts de développement</p>
+                    <h4>{t('chapter1.engineering.obj3')}</h4>
+                    <p>{t('chapter1.engineering.obj3Desc')}</p>
                   </div>
                   <div className="objective-card">
                     <div className="obj-number">04</div>
-                    <h4>Maintenance</h4>
-                    <p>Faciliter l'évolution et la maintenance</p>
+                    <h4>{t('chapter1.engineering.obj4')}</h4>
+                    <p>{t('chapter1.engineering.obj4Desc')}</p>
                   </div>
                 </div>
               </div>
 
               <div className="engineering-principles">
-                <h3>Principes Fondamentaux</h3>
+                <h3>{t('chapter1.engineering.principlesTitle')}</h3>
                 <div className="principles-list">
                   <div className="principle-item" onClick={() => toggleCard('p1')}>
                     <div className="principle-header">
                       {expandedCards['p1'] ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
-                      <span>Rigueur et Formalisme</span>
+                      <span>{t('chapter1.engineering.p1')}</span>
                     </div>
                     <AnimatePresence>
                       {expandedCards['p1'] && (
@@ -297,7 +293,7 @@ const Chapter1 = () => {
                           exit={{ height: 0, opacity: 0 }}
                           className="principle-content"
                         >
-                          Utilisation de méthodes formelles et d'outils pour garantir la qualité
+                          {t('chapter1.engineering.p1Desc')}
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -305,7 +301,7 @@ const Chapter1 = () => {
                   <div className="principle-item" onClick={() => toggleCard('p2')}>
                     <div className="principle-header">
                       {expandedCards['p2'] ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
-                      <span>Séparation des préoccupations</span>
+                      <span>{t('chapter1.engineering.p2')}</span>
                     </div>
                     <AnimatePresence>
                       {expandedCards['p2'] && (
@@ -315,7 +311,7 @@ const Chapter1 = () => {
                           exit={{ height: 0, opacity: 0 }}
                           className="principle-content"
                         >
-                          Décomposition du problème en sous-problèmes indépendants
+                          {t('chapter1.engineering.p2Desc')}
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -323,7 +319,7 @@ const Chapter1 = () => {
                   <div className="principle-item" onClick={() => toggleCard('p3')}>
                     <div className="principle-header">
                       {expandedCards['p3'] ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
-                      <span>Modularité</span>
+                      <span>{t('chapter1.engineering.p3')}</span>
                     </div>
                     <AnimatePresence>
                       {expandedCards['p3'] && (
@@ -333,7 +329,7 @@ const Chapter1 = () => {
                           exit={{ height: 0, opacity: 0 }}
                           className="principle-content"
                         >
-                          Division du système en modules indépendants et cohésifs
+                          {t('chapter1.engineering.p3Desc')}
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -341,7 +337,7 @@ const Chapter1 = () => {
                   <div className="principle-item" onClick={() => toggleCard('p4')}>
                     <div className="principle-header">
                       {expandedCards['p4'] ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
-                      <span>Abstraction</span>
+                      <span>{t('chapter1.engineering.p4')}</span>
                     </div>
                     <AnimatePresence>
                       {expandedCards['p4'] && (
@@ -351,7 +347,7 @@ const Chapter1 = () => {
                           exit={{ height: 0, opacity: 0 }}
                           className="principle-content"
                         >
-                          Masquer les détails pour se concentrer sur l'essentiel
+                          {t('chapter1.engineering.p4Desc')}
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -369,14 +365,12 @@ const Chapter1 = () => {
               exit={{ opacity: 0, x: -20 }}
               className="content-section"
             >
-              <h2>La Crise du Logiciel</h2>
+              <h2>{t('chapter1.crisis.title')}</h2>
 
               <div className="crisis-intro">
                 <AlertTriangle size={48} className="crisis-icon" />
                 <p>
-                  La "crise du logiciel" désigne les difficultés rencontrées dans le 
-                  développement de logiciels depuis les années 1960. Elle se manifeste 
-                  par des dépassements de budget, des retards et des logiciels défaillants.
+                  {t('chapter1.crisis.description')}
                 </p>
               </div>
 
@@ -384,21 +378,21 @@ const Chapter1 = () => {
                 <div className="stat-card failed">
                   <XCircle size={32} />
                   <div className="stat-value">31%</div>
-                  <div className="stat-label">Projets annulés</div>
+                  <div className="stat-label">{t('chapter1.crisis.cancelled')}</div>
                 </div>
                 <div className="stat-card warning">
                   <AlertTriangle size={32} />
                   <div className="stat-value">53%</div>
-                  <div className="stat-label">Dépassement coûts/délais</div>
+                  <div className="stat-label">{t('chapter1.crisis.overrun')}</div>
                 </div>
                 <div className="stat-card success">
                   <CheckCircle2 size={32} />
                   <div className="stat-value">16%</div>
-                  <div className="stat-label">Projets réussis</div>
+                  <div className="stat-label">{t('chapter1.crisis.success')}</div>
                 </div>
               </div>
 
-              <h3>Causes de la Crise</h3>
+              <h3>{t('chapter1.crisis.reasonsTitle')}</h3>
               <div className="causes-grid">
                 {softwareCrisisReasons.map((reason, index) => (
                   <motion.div
@@ -416,13 +410,13 @@ const Chapter1 = () => {
               </div>
 
               <div className="solution-box">
-                <h3>Solutions Apportées</h3>
+                <h3>{t('chapter1.crisis.solutionsTitle')}</h3>
                 <ul>
-                  <li><CheckCircle2 size={16} /> Adoption de méthodologies structurées</li>
-                  <li><CheckCircle2 size={16} /> Utilisation de langages de programmation évolués</li>
-                  <li><CheckCircle2 size={16} /> Mise en place d'outils de gestion de projet</li>
-                  <li><CheckCircle2 size={16} /> Formation des développeurs aux bonnes pratiques</li>
-                  <li><CheckCircle2 size={16} /> Approches orientées objet et UML</li>
+                  <li><CheckCircle2 size={16} /> {t('chapter1.crisis.s1')}</li>
+                  <li><CheckCircle2 size={16} /> {t('chapter1.crisis.s2')}</li>
+                  <li><CheckCircle2 size={16} /> {t('chapter1.crisis.s3')}</li>
+                  <li><CheckCircle2 size={16} /> {t('chapter1.crisis.s4')}</li>
+                  <li><CheckCircle2 size={16} /> {t('chapter1.crisis.s5')}</li>
                 </ul>
               </div>
             </motion.div>
@@ -436,17 +430,16 @@ const Chapter1 = () => {
               exit={{ opacity: 0, x: -20 }}
               className="content-section"
             >
-              <h2>Qualité du Logiciel</h2>
+              <h2>{t('chapter1.quality.title')}</h2>
 
               <div className="quality-intro">
                 <Target size={48} className="quality-icon" />
                 <p>
-                  La qualité logicielle est l'ensemble des caractéristiques d'un logiciel 
-                  qui lui confèrent l'aptitude à satisfaire des besoins exprimés ou implicites.
+                  {t('chapter1.quality.description')}
                 </p>
               </div>
 
-              <h3>Facteurs de Qualité</h3>
+              <h3>{t('chapter1.quality.factorsTitle')}</h3>
               <div className="quality-factors">
                 {qualityFactors.map((factor, index) => (
                   <motion.div
@@ -468,24 +461,23 @@ const Chapter1 = () => {
               </div>
 
               <div className="quality-triangle">
-                <h3>Le Triangle de la Qualité</h3>
+                <h3>{t('chapter1.quality.triangleTitle')}</h3>
                 <div className="triangle-diagram">
                   <div className="triangle-vertex top">
-                    <span>Qualité</span>
+                    <span>{t('chapter1.quality.triangleQuality')}</span>
                   </div>
                   <div className="triangle-vertex left">
-                    <span>Coût</span>
+                    <span>{t('chapter1.quality.triangleCost')}</span>
                   </div>
                   <div className="triangle-vertex right">
-                    <span>Délai</span>
+                    <span>{t('chapter1.quality.triangleTime')}</span>
                   </div>
                   <div className="triangle-center">
-                    <span>Équilibre</span>
+                    <span>{t('chapter1.quality.triangleBalance')}</span>
                   </div>
                 </div>
                 <p className="triangle-note">
-                  Ces trois contraintes sont interdépendantes : améliorer l'une 
-                  impacte généralement les deux autres.
+                  {t('chapter1.quality.triangleNote')}
                 </p>
               </div>
             </motion.div>

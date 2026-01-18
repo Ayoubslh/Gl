@@ -20,18 +20,20 @@ import {
   OrderActivityDiagram,
   ActivityNotationDiagram
 } from '../../components/Diagrams/ActivityDiagramSVG';
+import { useLanguage } from '../../context/LanguageContext';
 import './Chapter7.css';
 
-const sections = [
-  { id: 'intro', title: 'Introduction', icon: Activity },
-  { id: 'nodes', title: 'Nœuds d\'Action', icon: Square },
-  { id: 'control', title: 'Nœuds de Contrôle', icon: GitMerge },
-  { id: 'swimlanes', title: 'Partitions', icon: Columns },
-  { id: 'example', title: 'Exemple Complet', icon: Zap }
-];
-
 export default function Chapter7() {
+  const { t } = useLanguage();
   const [activeSection, setActiveSection] = useState('intro');
+
+  const sections = [
+    { id: 'intro', title: t('common.introduction'), icon: Activity },
+    { id: 'nodes', title: t('chapter7.elements.action'), icon: Square },
+    { id: 'control', title: t('chapter7.control.title'), icon: GitMerge },
+    { id: 'swimlanes', title: t('chapter7.swimlanes.title'), icon: Columns },
+    { id: 'example', title: t('common.example'), icon: Zap }
+  ];
 
   return (
     <div className="chapter-page">
@@ -40,10 +42,10 @@ export default function Chapter7() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <div className="chapter-number">Chapitre 07</div>
-        <h1>Diagramme d'Activité</h1>
+        <div className="chapter-number">{t('common.chapter')} 07</div>
+        <h1>{t('chapter7.title')}</h1>
         <p className="chapter-subtitle">
-          Modélisation du flux de contrôle et des processus métier
+          {t('chapter7.subtitle')}
         </p>
       </motion.div>
 

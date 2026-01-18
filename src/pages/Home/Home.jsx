@@ -1,110 +1,137 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, BookOpen, Users, Box, Brain, Zap, Target, Settings, Layers, GitBranch, Activity, Cog, RotateCcw } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
 import './Home.css';
 
-const features = [
+const getFeatures = (language) => [
   {
     icon: Brain,
-    title: 'Apprentissage Interactif',
-    description: 'Visualisez les concepts UML avec des diagrammes animés et interactifs.'
+    title: language === 'fr' ? 'Apprentissage Interactif' : 'Interactive Learning',
+    description: language === 'fr' 
+      ? 'Visualisez les concepts UML avec des diagrammes animés et interactifs.'
+      : 'Visualize UML concepts with animated and interactive diagrams.'
   },
   {
     icon: Zap,
-    title: 'Quiz Adaptatifs',
-    description: 'Testez vos connaissances avec des questions adaptées à votre niveau.'
+    title: language === 'fr' ? 'Quiz Adaptatifs' : 'Adaptive Quizzes',
+    description: language === 'fr'
+      ? 'Testez vos connaissances avec des questions adaptées à votre niveau.'
+      : 'Test your knowledge with questions adapted to your level.'
   },
   {
     icon: Target,
-    title: 'Exemples Pratiques',
-    description: 'Apprenez avec des cas d\'utilisation réels et des exercices guidés.'
+    title: language === 'fr' ? 'Exemples Pratiques' : 'Practical Examples',
+    description: language === 'fr'
+      ? 'Apprenez avec des cas d\'utilisation réels et des exercices guidés.'
+      : 'Learn with real use cases and guided exercises.'
   }
 ];
 
-const chapters = [
+const getChapters = (language) => [
   {
     id: 'chapter1',
     path: '/chapter1',
     number: '01',
-    title: 'Introduction au Génie Logiciel',
-    description: 'Fondamentaux du développement logiciel, qualité et crise du logiciel.',
+    title: language === 'fr' ? 'Introduction au Génie Logiciel' : 'Introduction to Software Engineering',
+    description: language === 'fr' 
+      ? 'Fondamentaux du développement logiciel, qualité et crise du logiciel.'
+      : 'Software development fundamentals, quality and software crisis.',
     icon: Cog,
-    topics: ['Logiciel', 'Qualité', 'Crise', 'Ingénierie'],
+    topics: language === 'fr' ? ['Logiciel', 'Qualité', 'Crise', 'Ingénierie'] : ['Software', 'Quality', 'Crisis', 'Engineering'],
     gradient: 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)'
   },
   {
     id: 'chapter2',
     path: '/chapter2',
     number: '02',
-    title: 'Processus de Développement',
-    description: 'Découvrez MERISE, UP et 2TUP : les méthodologies de développement logiciel.',
+    title: language === 'fr' ? 'Processus de Développement' : 'Development Process',
+    description: language === 'fr'
+      ? 'Découvrez MERISE, UP et 2TUP : les méthodologies de développement logiciel.'
+      : 'Discover MERISE, UP and 2TUP: software development methodologies.',
     icon: Settings,
-    topics: ['MERISE', 'UP', '2TUP', 'Cycles'],
+    topics: ['MERISE', 'UP', '2TUP', language === 'fr' ? 'Cycles' : 'Cycles'],
     gradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
   },
   {
     id: 'chapter3',
     path: '/chapter3',
     number: '03',
-    title: 'Introduction à UML',
-    description: 'Les fondamentaux d\'UML : historique, diagrammes et vues architecturales.',
+    title: language === 'fr' ? 'Introduction à UML' : 'Introduction to UML',
+    description: language === 'fr'
+      ? 'Les fondamentaux d\'UML : historique, diagrammes et vues architecturales.'
+      : 'UML fundamentals: history, diagrams and architectural views.',
     icon: Layers,
-    topics: ['Historique', 'Diagrammes', 'Vues 4+1', 'Notation'],
+    topics: language === 'fr' ? ['Historique', 'Diagrammes', 'Vues 4+1', 'Notation'] : ['History', 'Diagrams', '4+1 Views', 'Notation'],
     gradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
   },
   {
     id: 'chapter4',
     path: '/chapter4',
     number: '04',
-    title: 'Diagrammes de Cas d\'Utilisation',
-    description: 'Maîtrisez les Use Cases : acteurs, relations et modélisation des besoins.',
+    title: language === 'fr' ? 'Diagrammes de Cas d\'Utilisation' : 'Use Case Diagrams',
+    description: language === 'fr'
+      ? 'Maîtrisez les Use Cases : acteurs, relations et modélisation des besoins.'
+      : 'Master Use Cases: actors, relations and requirements modeling.',
     icon: Users,
-    topics: ['Acteurs', 'Use Cases', 'Include/Extend', 'Scénarios'],
+    topics: language === 'fr' ? ['Acteurs', 'Use Cases', 'Include/Extend', 'Scénarios'] : ['Actors', 'Use Cases', 'Include/Extend', 'Scenarios'],
     gradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)'
   },
   {
     id: 'chapter5',
     path: '/chapter5',
     number: '05',
-    title: 'Diagrammes de Classes & Objets',
-    description: 'Structure statique : classes, attributs, méthodes et associations.',
+    title: language === 'fr' ? 'Diagrammes de Classes & Objets' : 'Class & Object Diagrams',
+    description: language === 'fr'
+      ? 'Structure statique : classes, attributs, méthodes et associations.'
+      : 'Static structure: classes, attributes, methods and associations.',
     icon: Box,
-    topics: ['Classes', 'Attributs', 'Relations', 'Héritage'],
+    topics: language === 'fr' ? ['Classes', 'Attributs', 'Relations', 'Héritage'] : ['Classes', 'Attributes', 'Relations', 'Inheritance'],
     gradient: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)'
   },
   {
     id: 'chapter6',
     path: '/chapter6',
     number: '06',
-    title: 'Diagrammes de Séquence',
-    description: 'Modélisez les interactions temporelles entre objets du système.',
+    title: language === 'fr' ? 'Diagrammes de Séquence' : 'Sequence Diagrams',
+    description: language === 'fr'
+      ? 'Modélisez les interactions temporelles entre objets du système.'
+      : 'Model temporal interactions between system objects.',
     icon: GitBranch,
-    topics: ['Lifelines', 'Messages', 'Fragments', 'Boucles'],
+    topics: ['Lifelines', 'Messages', 'Fragments', language === 'fr' ? 'Boucles' : 'Loops'],
     gradient: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)'
   },
   {
     id: 'chapter7',
     path: '/chapter7',
     number: '07',
-    title: 'Diagrammes d\'Activité',
-    description: 'Flux de contrôle, processus métier et algorithmes visuels.',
+    title: language === 'fr' ? 'Diagrammes d\'Activité' : 'Activity Diagrams',
+    description: language === 'fr'
+      ? 'Flux de contrôle, processus métier et algorithmes visuels.'
+      : 'Control flow, business processes and visual algorithms.',
     icon: Activity,
-    topics: ['Actions', 'Décisions', 'Fork/Join', 'Swimlanes'],
+    topics: ['Actions', language === 'fr' ? 'Décisions' : 'Decisions', 'Fork/Join', 'Swimlanes'],
     gradient: 'linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)'
   },
   {
     id: 'chapter8',
     path: '/chapter8',
     number: '08',
-    title: 'Diagrammes d\'États',
-    description: 'Modélisez le comportement dynamique avec les états et transitions.',
+    title: language === 'fr' ? 'Diagrammes d\'États' : 'State Diagrams',
+    description: language === 'fr'
+      ? 'Modélisez le comportement dynamique avec les états et transitions.'
+      : 'Model dynamic behavior with states and transitions.',
     icon: RotateCcw,
-    topics: ['États', 'Transitions', 'Gardes', 'Composites'],
+    topics: language === 'fr' ? ['États', 'Transitions', 'Gardes', 'Composites'] : ['States', 'Transitions', 'Guards', 'Composites'],
     gradient: 'linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)'
   }
 ];
 
 export default function Home() {
+  const { language } = useLanguage();
+  const features = getFeatures(language);
+  const chapters = getChapters(language);
+  
   return (
     <div className="home">
       {/* Hero Section */}
@@ -117,25 +144,26 @@ export default function Home() {
         >
           <div className="hero-badge">
             <BookOpen size={14} />
-            <span>Révision Génie Logiciel</span>
+            <span>{language === 'fr' ? 'Révision Génie Logiciel' : 'Software Engineering Review'}</span>
           </div>
           
           <h1 className="hero-title">
-            Maîtrisez <span className="gradient-text">UML</span> pour vos examens
+            {language === 'fr' ? 'Maîtrisez' : 'Master'} <span className="gradient-text">UML</span> {language === 'fr' ? 'pour vos examens' : 'for your exams'}
           </h1>
           
           <p className="hero-description">
-            Une plateforme de révision interactive pour comprendre les diagrammes UML 
-            en profondeur. Visualisez, pratiquez, et réussissez.
+            {language === 'fr' 
+              ? 'Une plateforme de révision interactive pour comprendre les diagrammes UML en profondeur. Visualisez, pratiquez, et réussissez.'
+              : 'An interactive review platform to understand UML diagrams in depth. Visualize, practice, and succeed.'}
           </p>
           
           <div className="hero-actions">
-            <Link to="/chapter2" className="btn btn-primary">
-              <span>Commencer la révision</span>
+            <Link to="/chapter1" className="btn btn-primary">
+              <span>{language === 'fr' ? 'Commencer la révision' : 'Start reviewing'}</span>
               <ArrowRight size={18} />
             </Link>
             <Link to="/quiz" className="btn btn-secondary">
-              Tester mes connaissances
+              {language === 'fr' ? 'Tester mes connaissances' : 'Test my knowledge'}
             </Link>
           </div>
         </motion.div>
@@ -203,9 +231,11 @@ export default function Home() {
       {/* Chapters Section */}
       <section className="chapters">
         <div className="section-header">
-          <h2 className="section-title">Chapitres de Révision</h2>
+          <h2 className="section-title">{language === 'fr' ? 'Chapitres de Révision' : 'Review Chapters'}</h2>
           <p className="section-description">
-            Explorez chaque chapitre en détail avec des explications visuelles et des exercices pratiques.
+            {language === 'fr' 
+              ? 'Explorez chaque chapitre en détail avec des explications visuelles et des exercices pratiques.'
+              : 'Explore each chapter in detail with visual explanations and practical exercises.'}
           </p>
         </div>
 
@@ -235,7 +265,7 @@ export default function Home() {
                 </div>
                 
                 <div className="chapter-action">
-                  <span>Explorer le chapitre</span>
+                  <span>{language === 'fr' ? 'Explorer le chapitre' : 'Explore chapter'}</span>
                   <ArrowRight size={16} />
                 </div>
               </Link>

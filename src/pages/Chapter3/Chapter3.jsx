@@ -16,17 +16,19 @@ import {
   Package,
   Workflow
 } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 import './Chapter3.css';
 
-const sections = [
-  { id: 'intro', title: 'Qu\'est-ce que UML?', icon: BookOpen },
-  { id: 'history', title: 'Historique', icon: History },
-  { id: 'diagrams', title: 'Types de Diagrammes', icon: Grid3X3 },
-  { id: 'views', title: 'Vues 4+1', icon: Eye }
-];
-
 export default function Chapter3() {
+  const { t } = useLanguage();
   const [activeSection, setActiveSection] = useState('intro');
+
+  const sections = [
+    { id: 'intro', title: t('chapter3.sections.intro'), icon: BookOpen },
+    { id: 'history', title: t('chapter3.sections.history'), icon: History },
+    { id: 'diagrams', title: t('chapter3.sections.diagrams'), icon: Grid3X3 },
+    { id: 'views', title: t('chapter3.sections.views'), icon: Eye }
+  ];
 
   return (
     <div className="chapter-page">
@@ -37,11 +39,11 @@ export default function Chapter3() {
       >
         <div className="chapter-badge">
           <Layers size={20} />
-          <span>Chapitre 3</span>
+          <span>{t('common.chapter')} 3</span>
         </div>
-        <h1>Introduction à UML</h1>
+        <h1>{t('chapter3.title')}</h1>
         <p className="chapter-description">
-          Unified Modeling Language - Le langage standard de modélisation orientée objet
+          {t('chapter3.subtitle')}
         </p>
       </motion.header>
 
@@ -73,41 +75,39 @@ export default function Chapter3() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>🎯 Qu'est-ce que UML?</h2>
+                <h2>🎯 {t('chapter3.intro.title')}</h2>
                 
                 <div className="info-card highlight">
                   <Lightbulb className="card-icon" />
                   <div>
-                    <h4>Définition</h4>
+                    <h4>{t('common.definition')}</h4>
                     <p>
-                      <strong>UML</strong> (Unified Modeling Language) est un langage de modélisation graphique 
-                      et textuel destiné à comprendre et décrire des besoins, spécifier et documenter des systèmes, 
-                      esquisser des architectures logicielles, concevoir des solutions et communiquer des points de vue.
+                      {t('chapter3.intro.description')}
                     </p>
                   </div>
                 </div>
 
-                <h3>Caractéristiques Clés</h3>
+                <h3>{t('common.characteristics')}</h3>
                 <div className="features-grid">
                   <div className="feature-card">
                     <div className="feature-icon">📐</div>
-                    <h4>Langage de Modélisation</h4>
-                    <p>UML n'est pas une méthode mais un langage avec une syntaxe et une sémantique précises</p>
+                    <h4>{t('chapter3.intro.visualize')}</h4>
+                    <p>{t('chapter3.intro.visualizeDesc')}</p>
                   </div>
                   <div className="feature-card">
                     <div className="feature-icon">🎨</div>
-                    <h4>Notation Graphique</h4>
-                    <p>Utilise des symboles visuels pour représenter les concepts orientés objet</p>
+                    <h4>{t('chapter3.intro.specify')}</h4>
+                    <p>{t('chapter3.intro.specifyDesc')}</p>
                   </div>
                   <div className="feature-card">
                     <div className="feature-icon">🌐</div>
-                    <h4>Standard International</h4>
-                    <p>Normalisé par l'OMG (Object Management Group), adopté mondialement</p>
+                    <h4>{t('chapter3.intro.construct')}</h4>
+                    <p>{t('chapter3.intro.constructDesc')}</p>
                   </div>
                   <div className="feature-card">
                     <div className="feature-icon">🔧</div>
-                    <h4>Indépendant</h4>
-                    <p>Indépendant des langages de programmation et des processus de développement</p>
+                    <h4>{t('chapter3.intro.document')}</h4>
+                    <p>{t('chapter3.intro.documentDesc')}</p>
                   </div>
                 </div>
 
@@ -170,7 +170,7 @@ export default function Chapter3() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>📜 Historique d'UML</h2>
+                <h2>📜 {t('chapter3.history.title')}</h2>
                 
                 <div className="timeline">
                   <div className="timeline-item">
@@ -263,7 +263,7 @@ export default function Chapter3() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>📊 Les 14 Types de Diagrammes UML</h2>
+                <h2>📊 {t('chapter3.diagrams.title')}</h2>
                 
                 <div className="info-card">
                   <div>
@@ -418,7 +418,7 @@ export default function Chapter3() {
                 exit={{ opacity: 0, x: -20 }}
                 className="content-section"
               >
-                <h2>👁️ Modèle des Vues 4+1</h2>
+                <h2>👁️ {t('chapter3.views.title')}</h2>
                 
                 <div className="info-card highlight">
                   <div>
