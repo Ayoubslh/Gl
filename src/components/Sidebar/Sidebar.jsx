@@ -15,7 +15,9 @@ import {
   GitBranch,
   Activity,
   RotateCcw,
-  Cog
+  Cog,
+  Menu,
+  X
 } from 'lucide-react';
 import './Sidebar.css';
 
@@ -100,74 +102,91 @@ const getChapters = (t) => [
   }
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onToggle, onClose }) {
   const { t, language } = useLanguage();
   const chapters = getChapters(t);
   
   return (
-    <aside className="sidebar">
-      <div className="sidebar-header">
-        <motion.div 
-          className="logo"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="logo-icon">
-            <BookOpen size={24} />
-          </div>
-          <div className="logo-text">
-            <span className="logo-title">GL Revision</span>
-            <span className="logo-subtitle">UML Mastery</span>
-          </div>
-        </motion.div>
-        <LanguageToggle />
-      </div>
+    <>
+      {/* Mobile Toggle Button */}
+      <button 
+        className="sidebar-toggle"
+        onClick={onToggle}
+        aria-label="Toggle sidebar"
+      >
+        {isOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
 
-      <nav className="sidebar-nav">
-        <div className="nav-section">
-          <span className="nav-section-title">{t('nav.chapters')}</span>
-          <ul className="nav-list">
-            {chapters.map((chapter, index) => (
-              <motion.li 
-                key={chapter.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-              >
-                <NavLink 
-                  to={chapter.path}
-                  className={({ isActive }) => 
-                    `nav-item ${isActive ? 'active' : ''}`
-                  }
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div className="sidebar-overlay" onClick={onClose} />
+      )}
+
+      <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
+        <div className="sidebar-header">
+          <motion.div 
+            className="logo"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="logo-icon">
+              <BookOpen size={24} />
+            </div>
+            <div className="logo-text">
+              <span className="logo-title">GL Revision</span>
+              <span className="logo-subtitle">UML Mastery</span>
+            </div>
+          </motion.div>
+          <LanguageToggle />
+        </div>
+
+        <nav className="sidebar-nav">
+          <div className="nav-section">
+            <span className="nav-section-title">{t('nav.chapters')}</span>
+            <ul className="nav-list">
+              {chapters.map((chapter, index) => (
+                <motion.li 
+                  key={chapter.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
                 >
-                  <chapter.icon className="nav-icon" size={20} />
-                  <div className="nav-content">
-                    <span className="nav-title">{chapter.title}</span>
-                    {chapter.subtitle && (
-                      <span className="nav-subtitle">{chapter.subtitle}</span>
-                    )}
-                  </div>
-                  <ChevronRight className="nav-arrow" size={16} />
-                </NavLink>
-              </motion.li>
-            ))}
-          </ul>
-        </div>
-      </nav>
+                  <NavLink 
+                    to={chapter.path}
+                    className={({ isActive }) => 
+                      `nav-item ${isActive ? 'active' : ''}`
+                    }
+                    onClick={onClose}
+                  >
+                    <chapter.icon className="nav-icon" size={20} />
+                    <div className="nav-content">
+                      <span className="nav-title">{chapter.title}</span>
+                      {chapter.subtitle && (
+                        <span className="nav-subtitle">{chapter.subtitle}</span>
+                      )}
+                    </div>
+                    <ChevronRight className="nav-arrow" size={16} />
+                  </NavLink>
+                </motion.li>
+              ))}
+            </ul>
+          </div>
+        </nav>
 
-      <div className="sidebar-footer">
-        <div className="progress-card">
-          <div className="progress-header">
-            <Sparkles size={16} />
-            <span>{language === 'fr' ? 'Votre Progression' : 'Your Progress'}</span>
+        <div className="sidebar-footer">
+          <div className="progress-card">
+            <div className="progress-header">
+              <Sparkles size={16} />
+              <span>{language === 'fr' ? 'Votre Progression' : 'Your Progress'}</span>
+            </div>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{ width: '45%' }}></div>
+            </div>
+            <span className="progress-text">{language === 'fr' ? '45% complété' : '45% completed'}</span>
           </div>
-          <div className="progress-bar">
-            <div className="progress-fill" style={{ width: '45%' }}></div>
-          </div>
-          <span className="progress-text">{language === 'fr' ? '45% complété' : '45% completed'}</span>
         </div>
-      </div>
-    </aside>
+      </aside>
+    </>
   );
 }

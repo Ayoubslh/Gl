@@ -16,6 +16,14 @@
 @media (max-width: 1024px) {
   .main-content {
     margin-left: 0;
+    padding-top: var(--space-4);
     padding-bottom: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-4);
   }
 }

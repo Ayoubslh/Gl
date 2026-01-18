@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
 import Home from './pages/Home/Home';
 import Chapter1 from './pages/Chapter1/Chapter1';
@@ -13,9 +14,19 @@ import Quiz from './pages/Quiz/Quiz';
 import './App.css';
 
 function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
+
   return (
     <div className="app-layout">
-      <Sidebar />
+      <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} onClose={closeSidebar} />
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />

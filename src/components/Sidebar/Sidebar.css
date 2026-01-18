@@ -1,3 +1,31 @@
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 101;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  padding: var(--space-2);
+  transition: all var(--transition-base);
+}
+
+.sidebar-toggle:hover {
+  background: var(--color-bg-hover);
+  border-color: var(--color-border-hover);
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
 .sidebar {
   width: var(--sidebar-width);
   height: 100vh;
@@ -205,4 +233,69 @@
 .progress-text {
   font-size: 0.75rem;
   color: var(--color-text-muted);
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 1024px) {
+  .sidebar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sidebar-overlay {
+    display: block;
+  }
+
+  .sidebar {
+    width: 280px;
+    transform: translateX(-100%);
+    transition: transform var(--transition-base);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-toggle {
+    top: var(--space-3);
+    left: var(--space-3);
+  }
+
+  .sidebar {
+    width: 75vw;
+    max-width: 280px;
+  }
+
+  .sidebar-header {
+    padding: var(--space-4);
+  }
+
+  .logo-title {
+    font-size: 1rem;
+  }
+
+  .logo-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .sidebar-nav {
+    padding: var(--space-3);
+  }
+
+  .nav-item {
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .nav-title {
+    font-size: 0.875rem;
+  }
+
+  .nav-subtitle {
+    font-size: 0.7rem;
+  }
 }
